@@ -6,6 +6,9 @@ import {
   Redirect
 } from 'react-router-dom';
 
+import '@fontsource/poppins';
+import { ThemeProvider, createTheme, CssBaseline } from '@material-ui/core';
+
 // routes
 import { AppRoutes } from './routes';
 
@@ -13,32 +16,40 @@ import { AppRoutes } from './routes';
 const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
 
 function App() {
+  const theme = createTheme({
+    typography: {
+      fontFamily: ['Poppins', 'Sans-Serif'].join(',')
+    }
+  });
   return (
-    <Router>
-      <Suspense fallback={<></>}>
-        <Switch>
-          {AppRoutes.map((route) => {
-            const { component: Component, path, exact } = route;
-            return (
-              <Route
-                key={path}
-                path={path}
-                exact={exact}
-                render={(props) => {
-                  return (
-                    <DashboardLayout>
-                      <Component {...props} />
-                    </DashboardLayout>
-                  );
-                }}
-              />
-            );
-          })}
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Suspense fallback={<></>}>
+          <Switch>
+            {AppRoutes.map((route) => {
+              const { component: Component, path, exact } = route;
+              return (
+                <Route
+                  key={path}
+                  path={path}
+                  exact={exact}
+                  render={(props) => {
+                    return (
+                      <DashboardLayout>
+                        <Component {...props} />
+                      </DashboardLayout>
+                    );
+                  }}
+                />
+              );
+            })}
 
-          <Redirect from="*" to="/error-404" />
-        </Switch>
-      </Suspense>
-    </Router>
+            <Redirect from="*" to="/error-404" />
+          </Switch>
+        </Suspense>
+      </Router>
+    </ThemeProvider>
   );
 }
 
