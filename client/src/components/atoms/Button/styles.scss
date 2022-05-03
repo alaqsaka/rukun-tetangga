@@ -1,0 +1,26 @@
+@import '../../../assets/styles/library';
+
+.a-button {
+  width: 100% !important;
+  border-radius: 12px !important;
+  padding: 1rem 8px !important;
+  font-weight: bold !important;
+  color: white !important;
+  &.sm {
+    width: auto !important;
+    min-width: 150px !important;
+    padding: 10px 2rem !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
+    border-radius: 8px !important;
+  }
+  &-primary {
+    background: $primary-color !important;
+  }
+  &-secondary{
+    background: $secondary-color !important;
+  }
+  &-disabled{
+    background: $disabled-color !important;
+  }
+}
