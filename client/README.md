@@ -1,6 +1,7 @@
 # Rukun Tetangga (Front-End)
 
 ## Table of Contents
+- Rukun Tetangga (Front-End)
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
     - [Tech Stack](#tech-stack)
@@ -24,6 +25,7 @@ Requirements prior to running/building this app:
 ### Default Branch
 - master
 
+
 ## Installation Guides
 
 ### Manual/local build
@@ -40,6 +42,9 @@ $ npm start
 or
 # build app for production
 $ npm run build
+```
+
+
 
 ### Learn More
 
