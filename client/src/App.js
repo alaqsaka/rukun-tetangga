@@ -5,8 +5,7 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
-
-import '@fontsource/poppins';
+import './index.css';
 import { ThemeProvider, createTheme, CssBaseline } from '@material-ui/core';
 
 // routes
@@ -18,9 +17,10 @@ const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
 function App() {
   const theme = createTheme({
     typography: {
-      fontFamily: ['Poppins', 'Sans-Serif'].join(',')
+      fontFamily: 'Poppins'
     }
   });
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
