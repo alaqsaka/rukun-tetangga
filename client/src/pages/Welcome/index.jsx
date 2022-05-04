@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Hero } from '../../components/atoms';
+import { Hero, Section, ContactUs, AboutSection } from '../../components/atoms';
 
 // services
 
@@ -10,6 +10,9 @@ const Welcome = () => {
   return (
     <div>
       <Hero />
+      <Section />
+      <AboutSection />
+      <ContactUs />
     </div>
   );
 };

@@ -6,8 +6,8 @@ import {
   Redirect
 } from 'react-router-dom';
 import './index.css';
-import { ThemeProvider, createTheme, CssBaseline } from '@material-ui/core';
-
+// import { ThemeProvider, createTheme, CssBaseline } from '@material-ui/core';
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 // routes
 import { AppRoutes } from './routes';
 

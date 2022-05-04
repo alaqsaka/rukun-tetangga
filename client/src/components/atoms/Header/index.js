@@ -48,9 +48,9 @@ const Header = (props) => {
     {
       id: 1,
       route: 'About',
-      url: 'https://blog.appseed.us/mui-react-coding-landing-page/'
+      url: '/about'
     },
-    { id: 2, route: 'More Apps', url: 'https://appseed.us/apps/react' }
+    { id: 2, route: 'Kegiatan', url: '/kegiatan' }
   ];
 
   const [state, setState] = React.useState({
@@ -93,7 +93,7 @@ const Header = (props) => {
       <ElevationScroll {...props}>
         <AppBar>
           <Toolbar className={classes.toolBar}>
-            <Link href="#" underline="none">
+            <Link href="/" underline="none">
               <a className={classes.logo}>Rukun Tetangga</a>
             </Link>
 
@@ -128,7 +128,6 @@ const Header = (props) => {
                 {links.map((link) => (
                   <Link
                     href={link.url}
-                    target="_blank"
                     underline="none"
                     key={link.id}
                     className={classes.link}

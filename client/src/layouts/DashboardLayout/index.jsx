@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from '../../components/atoms';
+import { Header, Footer } from '../../components/atoms';
 
 const DashboardLayout = ({ children }) => {
   return (
@@ -8,6 +8,7 @@ const DashboardLayout = ({ children }) => {
       <div className="dashboard-layout__content">
         <div>{children}</div>
       </div>
+      <Footer />
     </div>
   );
 };
