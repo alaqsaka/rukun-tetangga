@@ -5,7 +5,9 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
-
+import './index.css';
+// import { ThemeProvider, createTheme, CssBaseline } from '@material-ui/core';
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 // routes
 import { AppRoutes } from './routes';
 
@@ -13,32 +15,41 @@ import { AppRoutes } from './routes';
 const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
 
 function App() {
-  return (
-    <Router>
-      <Suspense fallback={<></>}>
-        <Switch>
-          {AppRoutes.map((route) => {
-            const { component: Component, path, exact } = route;
-            return (
-              <Route
-                key={path}
-                path={path}
-                exact={exact}
-                render={(props) => {
-                  return (
-                    <DashboardLayout>
-                      <Component {...props} />
-                    </DashboardLayout>
-                  );
-                }}
-              />
-            );
-          })}
+  const theme = createTheme({
+    typography: {
+      fontFamily: 'Poppins'
+    }
+  });
 
-          <Redirect from="*" to="/error-404" />
-        </Switch>
-      </Suspense>
-    </Router>
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Suspense fallback={<></>}>
+          <Switch>
+            {AppRoutes.map((route) => {
+              const { component: Component, path, exact } = route;
+              return (
+                <Route
+                  key={path}
+                  path={path}
+                  exact={exact}
+                  render={(props) => {
+                    return (
+                      <DashboardLayout>
+                        <Component {...props} />
+                      </DashboardLayout>
+                    );
+                  }}
+                />
+              );
+            })}
+
+            <Redirect from="*" to="/error-404" />
+          </Switch>
+        </Suspense>
+      </Router>
+    </ThemeProvider>
   );
 }
 

@@ -1,13 +1,14 @@
 import React from 'react';
+import { Header, Footer } from '../../components/atoms';
 
 const DashboardLayout = ({ children }) => {
   return (
     <div className="dashboard-layout">
-      <div className="dashboard-layout__navbar">navbar</div>
+      <Header></Header>
       <div className="dashboard-layout__content">
-        <div className="dashboard-layout__sidebar">sidebar</div>
         <div>{children}</div>
       </div>
+      <Footer />
     </div>
   );
 };
