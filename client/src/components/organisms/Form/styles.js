@@ -19,6 +19,8 @@ export default makeStyles((theme) => ({
     margin: '10px 0'
   },
   buttonSubmit: {
-    marginBottom: 10
+    marginBottom: 10,
+    background:
+      'linear-gradient(178.9deg, #0094FF 76.77%, rgba(0, 122, 255, 0.510417) 131.28%, rgba(0, 122, 255, 0) 220.06%)'
   }
 }));

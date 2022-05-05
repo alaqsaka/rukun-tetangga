@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grow, Container, Grid } from '@mui/material';
 import { Activities, Form } from '../../components/organisms';
+import { useDispatch } from 'react-redux';
+import { getActivities } from '../../actions/activities';
 
 const Kegiatan = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getActivities());
+  }, [dispatch]);
+
   return (
     <Grow in>
       <Container maxWidth="xl" style={{ marginTop: '80px' }}>

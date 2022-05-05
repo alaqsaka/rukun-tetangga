@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "author": "Moka NH <mokanh@outlook.com",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@craco/craco": "^6.4.0",
     "@emotion/react": "^11.9.0",
