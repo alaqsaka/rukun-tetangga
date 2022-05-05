@@ -10,9 +10,9 @@ import './index.css';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 // routes
 import { AppRoutes } from './routes';
-
 // import layouts
 const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
+import { Container } from '@mui/material';
 
 function App() {
   const theme = createTheme({
@@ -37,7 +37,9 @@ function App() {
                   render={(props) => {
                     return (
                       <DashboardLayout>
-                        <Component {...props} />
+                        <Container maxWidth="xl">
+                          <Component {...props} />
+                        </Container>
                       </DashboardLayout>
                     );
                   }}
