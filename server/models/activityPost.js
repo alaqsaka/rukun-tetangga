@@ -4,10 +4,10 @@ const activitySchema = mongoose.Schema({
   namaKegiatan: String,
   deskripsiKegiatan: String,
   creator: String,
-  tanggalKegiatan: Date,
+  tanggalKegiatan: String,
   waktuKegiatan: String,
   tempatKegiatan: String,
-  selectedFile: String,
+  selectedFile: [String],
   hadirCount: {
     type: Number,
     default: 0,
@@ -15,6 +15,10 @@ const activitySchema = mongoose.Schema({
   createdAt: {
     type: Date,
     default: new Date(),
+  },
+  likeCount: {
+    type: Number,
+    default: 0,
   },
 });
 

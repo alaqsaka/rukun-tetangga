@@ -8,7 +8,7 @@ const styles = () => {
       miHeight: '10vh',
       padding: '20px',
       justifyContent: 'center',
-      backgroundColor: '#f2f0f1',
+      backgroundColor: '#f5f5f5',
       flexDirection: 'column'
     },
     footerText: {

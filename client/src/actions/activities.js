@@ -9,3 +9,13 @@ export const getActivities = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const createActivity = (activity) => async (dispatch) => {
+  try {
+    const { data } = await api.createActivity(activity);
+
+    dispatch({ type: 'CREATE', payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};

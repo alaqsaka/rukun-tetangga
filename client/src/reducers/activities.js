@@ -2,8 +2,8 @@ export default (activities = [], action) => {
   switch (action.type) {
     case 'FETCH_ALL':
       return action.payload;
-    case 'CREATE_CATEGORY':
-      return activities;
+    case 'CREATE':
+      return [...activities, action.payload];
     default:
       return activities;
   }

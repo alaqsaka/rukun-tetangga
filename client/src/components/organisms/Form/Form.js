@@ -3,8 +3,12 @@ import React, { useState } from 'react';
 import { TextField, Button, Typography, Paper } from '@mui/material';
 import useStyles from './styles';
 import FileBase from 'react-file-base64';
+import { useDispatch } from 'react-redux';
+import { createActivity } from '../../../actions/activities.js';
 
 const Form = () => {
+  const dispatch = useDispatch();
+
   const [activityData, setActivityData] = useState({
     creator: '',
     namaKegiatan: '',
@@ -17,7 +21,11 @@ const Form = () => {
 
   const classes = useStyles();
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(activityData.selectedFile);
+    dispatch(createActivity(activityData));
+  };
 
   const clear = () => {};
   return (
@@ -100,7 +108,10 @@ const Form = () => {
             type="file"
             multiple={false}
             onDone={(base64) =>
-              setActivityData({ ...activityData, selectedFile: base64 })
+              setActivityData({
+                ...activityData,
+                selectedFile: JSON.stringify(base64)
+              })
             }
           />
         </div>

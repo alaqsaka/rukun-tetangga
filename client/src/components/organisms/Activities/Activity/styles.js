@@ -37,8 +37,8 @@ export default makeStyles({
     display: 'flex'
   },
   details: {
-    display: 'flex',
-    justifyContent: 'space-between',
+    // display: 'flex',
+    // justifyContent: 'space-between',
     margin: '20px'
   },
   title: {

@@ -16,8 +16,13 @@ import { Container } from '@mui/material';
 
 function App() {
   const theme = createTheme({
+    palette: {
+      background: {
+        default: '#f5f5f5'
+      }
+    },
     typography: {
-      fontFamily: 'Poppins'
+      fontFamily: 'Quicksand'
     }
   });
 
