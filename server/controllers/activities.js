@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import ActivityPost from "../models/activityPost.js";
 
 export const getActivities = async (req, res) => {
@@ -21,4 +22,22 @@ export const createActivity = async (req, res) => {
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
+};
+
+export const updateActivity = async (req, res) => {
+  const { id: _id } = req.params;
+  // nilai id didapatkan dari url yang dikirim dari frontend /activities/123 -> idnya 123
+  const activity = req.body;
+
+  // mengecek apakah id tersebut adalah id yang disediakan sama mongoose
+  if (!mongoose.Types.ObjectId.isValid(_id))
+    return res.status(404).send("Tidak ada kegiatan dengan id tersebut");
+
+  // mencari dan mengubah kegiatan (activity sesuai dengan id yang dikirimkan)
+  // nerima dua paramater, id dan data yang mau terupdate kegiatan tersebut
+  const updatedActivity = await ActivityPost.findByIdAndUpdate(_id, activity, {
+    new: true,
+  });
+
+  res.json(updatedActivity);
 };
