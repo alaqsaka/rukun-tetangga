@@ -22,7 +22,7 @@ function App() {
       }
     },
     typography: {
-      fontFamily: 'Quicksand'
+      fontFamily: 'Poppins'
     }
   });
 

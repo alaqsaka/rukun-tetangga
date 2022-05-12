@@ -13,7 +13,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import useStyles from './styles';
 import moment from 'moment';
-import Delete from '@mui/icons-material/Delete';
 
 const Activity = ({ activity }) => {
   const classes = useStyles();
@@ -37,7 +36,7 @@ const Activity = ({ activity }) => {
       </div>
       <div className={classes.overlay2}>
         <Button style={{ color: 'white' }} size="small" onClick={() => {}}>
-          <MoreHorizIcon fontSize="default" />
+          <MoreHorizIcon fontSize="medium" />
         </Button>
       </div>
       <div className={classes.details}>
@@ -54,7 +53,7 @@ const Activity = ({ activity }) => {
           Suka
         </Button>
         <Button size="small" color="primary" onClick={() => {}}>
-          <Delete fontSize="small" />
+          <DeleteIcon fontSize="small" />
           Hapus
         </Button>
       </CardActions>
