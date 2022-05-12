@@ -4,7 +4,7 @@ import Activity from './Activity/Activity';
 import { Grid, CircularProgress } from '@mui/material';
 import useStyles from './styles';
 
-const Activities = () => {
+const Activities = ({ setCurrentId }) => {
   const activities = useSelector((state) => state.activities);
   const classes = useStyles();
   console.log(activities);
@@ -23,7 +23,7 @@ const Activities = () => {
         >
           {activities.map((activity) => (
             <Grid item key={activity._id} xs={12} sm={6}>
-              <Activity activity={activity} />
+              <Activity activity={activity} setCurrentId={setCurrentId} />
             </Grid>
           ))}
         </Grid>

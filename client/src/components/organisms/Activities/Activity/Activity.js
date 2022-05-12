@@ -14,7 +14,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import useStyles from './styles';
 import moment from 'moment';
 
-const Activity = ({ activity }) => {
+const Activity = ({ activity, setCurrentId }) => {
   const classes = useStyles();
 
   let image = JSON.parse(activity.selectedFile[0]);
@@ -35,7 +35,12 @@ const Activity = ({ activity }) => {
         </Typography>
       </div>
       <div className={classes.overlay2}>
-        <Button style={{ color: 'white' }} size="small" onClick={() => {}}>
+        {/* Button untuk update kegiatan */}
+        <Button
+          style={{ color: 'white' }}
+          size="small"
+          onClick={() => setCurrentId(activity._id)}
+        >
           <MoreHorizIcon fontSize="medium" />
         </Button>
       </div>

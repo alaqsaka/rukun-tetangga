@@ -19,3 +19,14 @@ export const createActivity = (activity) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const updateActivity = (id, activity) => async (dispatch) => {
+  try {
+    const { data } = await api.updateActivity(id, activity);
+    // API ini mengembalikan data kegiatan yang udah di-update
+
+    dispatch({ type: 'UPDATE', payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper } from '@mui/material';
 import useStyles from './styles';
 import FileBase from 'react-file-base64';
-import { useDispatch } from 'react-redux';
-import { createActivity } from '../../../actions/activities.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { createActivity, updateActivity } from '../../../actions/activities.js';
 
-const Form = () => {
+// Mendapatkan ID kegiatan, dengan cara menekan icon MoreHoriz pada card kegiatan
+
+const Form = ({ currentId, setCurrentId }) => {
   const dispatch = useDispatch();
 
   const [activityData, setActivityData] = useState({
@@ -19,15 +21,45 @@ const Form = () => {
     selectedFile: ''
   });
 
+  // mendapatkan data untuk kegiatan yang sedang diupdate, supaya data tersebut dapat ditampilkan pada form
+  const activity = useSelector((state) =>
+    currentId ? state.activities.find((a) => a._id === currentId) : null
+  );
+
   const classes = useStyles();
+
+  useEffect(() => {
+    if (activity) setActivityData(activity);
+  }, [activity]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(activityData.selectedFile);
-    dispatch(createActivity(activityData));
+    // jika ada currentId
+    if (currentId) {
+      // men-dispatch function untuk update activity (kegiatan)
+      dispatch(updateActivity(currentId, activityData));
+    } else {
+      dispatch(createActivity(activityData));
+    }
+    clear();
   };
 
-  const clear = () => {};
+  const clear = () => {
+    // fungsi untuk mengosongkon field input yang ada di form
+    // semua field akan kosong saat button BUAT KEGIATAN ditekan
+    // atau CLEAR ditekan
+    setCurrentId(null);
+    setActivityData({
+      creator: '',
+      namaKegiatan: '',
+      deskripsiKegiatan: '',
+      tanggalKegiatan: '',
+      waktuKegiatan: '',
+      tempatKegiatan: '',
+      selectedFile: ''
+    });
+  };
+
   return (
     <Paper className={classes.paper}>
       <form
@@ -36,7 +68,9 @@ const Form = () => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Buat Kegiatan Baru</Typography>
+        <Typography variant="h6">
+          {currentId ? 'Mengedit Kegiatan' : 'Membuat Kegiatan'}
+        </Typography>
         <TextField
           name="creator"
           variant="outlined"

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grow, Container, Grid, Typography } from '@mui/material';
 import { Activities, Form } from '../../components/organisms';
 import { useDispatch } from 'react-redux';
@@ -6,10 +6,11 @@ import { getActivities } from '../../actions/activities';
 
 const Kegiatan = () => {
   const dispatch = useDispatch();
+  const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
     dispatch(getActivities());
-  }, [dispatch]);
+  }, [currentId, dispatch]);
 
   return (
     <Grow in>
@@ -22,10 +23,10 @@ const Kegiatan = () => {
           spacing={2}
         >
           <Grid item xs={12} sm={7}>
-            <Activities />
+            <Activities setCurrentId={setCurrentId} />
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Form />
+            <Form currentId={currentId} setCurrentId={setCurrentId} />
           </Grid>
         </Grid>
       </Container>
