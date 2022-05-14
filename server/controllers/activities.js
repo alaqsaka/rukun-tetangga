@@ -35,9 +35,13 @@ export const updateActivity = async (req, res) => {
 
   // mencari dan mengubah kegiatan (activity sesuai dengan id yang dikirimkan)
   // nerima dua paramater, id dan data yang mau terupdate kegiatan tersebut
-  const updatedActivity = await ActivityPost.findByIdAndUpdate(_id, activity, {
-    new: true,
-  });
+  const updatedActivity = await ActivityPost.findByIdAndUpdate(
+    _id,
+    { ...activity, _id },
+    {
+      new: true,
+    }
+  );
 
   res.json(updatedActivity);
 };
