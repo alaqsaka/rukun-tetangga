@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Paper } from '@mui/material';
+import { TextField, Button, Typography, Paper, Stack } from '@mui/material';
 import useStyles from './styles';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,6 +20,9 @@ const Form = ({ currentId, setCurrentId }) => {
     tempatKegiatan: '',
     selectedFile: ''
   });
+
+  const [tanggal, setTanggal] = useState('');
+  console.log(tanggal);
 
   // mendapatkan data untuk kegiatan yang sedang diupdate, supaya data tersebut dapat ditampilkan pada form
   const activity = useSelector((state) =>
@@ -104,11 +107,29 @@ const Form = ({ currentId, setCurrentId }) => {
             })
           }
         />
-        <TextField
+        {/* <TextField
           name="tanggalKegiatan"
           variant="outlined"
           label="Tanggal Kegiatan"
           fullWidth
+          value={activityData.tanggalKegiatan}
+          onChange={(e) =>
+            setActivityData({
+              ...activityData,
+              tanggalKegiatan: e.target.value
+            })
+          }
+        /> */}
+        <TextField
+          id="date"
+          label="Tanggal Kegiatan"
+          type="date"
+          defaultValue="2022-05-22"
+          fullWidth
+          name="tanggalKegiatan"
+          InputLabelProps={{
+            shrink: true
+          }}
           value={activityData.tanggalKegiatan}
           onChange={(e) =>
             setActivityData({

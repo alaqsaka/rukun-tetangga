@@ -22,7 +22,7 @@ const Activity = ({ activity, setCurrentId }) => {
 
   let image = JSON.parse(activity.selectedFile[0]);
 
-  console.log(image['base64']);
+  // fungsi untuk mengubah waktu (harinya) dari bahasa inggris ke bahasa indo
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -75,7 +75,7 @@ const Activity = ({ activity, setCurrentId }) => {
       </CardActions>
       <CardContent>
         <Typography variant="body2" gutterBottom>
-          📅 {activity.tanggalKegiatan}
+          📅 {moment(activity.tanggalKegiatan).format('dddd, LL')}
         </Typography>
         <Typography variant="body2" gutterBottom>
           🕕 {activity.waktuKegiatan}
