@@ -58,3 +58,21 @@ export const deleteActivity = async (req, res) => {
 
   res.json({ message: "Kegiatan berhasil dihapus" });
 };
+
+export const likeActivity = async (req, res) => {
+  const { id } = req.params;
+
+  // mengecek apakah id tersebut adalah id yang disediakan sama mongoose
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("Tidak ada kegiatan dengan id tersebut");
+
+  const activity = await ActivityPost.findById(id);
+
+  const updatedActivity = await ActivityPost.findByIdAndUpdate(
+    id,
+    { likeCount: activity.likeCount + 1 },
+    { new: true }
+  );
+
+  res.json(updatedActivity);
+};

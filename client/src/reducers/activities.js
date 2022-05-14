@@ -5,6 +5,7 @@ export default (activities = [], action) => {
     case 'CREATE':
       return [...activities, action.payload];
     case 'UPDATE':
+    case 'LIKE':
       return activities.map((activity) =>
         activity._id === action.payload._id ? action.payload : activity
       );

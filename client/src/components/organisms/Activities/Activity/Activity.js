@@ -14,7 +14,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import useStyles from './styles';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { deleteActivity } from '../../../../actions/activities';
+import { deleteActivity, likeActivity } from '../../../../actions/activities';
 
 const Activity = ({ activity, setCurrentId }) => {
   const classes = useStyles();
@@ -56,9 +56,13 @@ const Activity = ({ activity, setCurrentId }) => {
         </Typography>
       </div>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={() => {}}>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => dispatch(likeActivity(activity._id))}
+        >
           <ThumbUpAltIcon fontSize="small" />
-          Suka
+          Suka {activity.likeCount}
         </Button>
         <Button
           size="small"
