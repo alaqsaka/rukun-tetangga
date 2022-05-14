@@ -62,7 +62,7 @@ const Activity = ({ activity, setCurrentId }) => {
           onClick={() => dispatch(likeActivity(activity._id))}
         >
           <ThumbUpAltIcon fontSize="small" />
-          Suka {activity.likeCount}
+          &nbsp; Suka &nbsp; {activity.likeCount}
         </Button>
         <Button
           size="small"
@@ -83,11 +83,20 @@ const Activity = ({ activity, setCurrentId }) => {
         <Typography variant="body2" gutterBottom>
           📌 {activity.tempatKegiatan}
         </Typography>
+        <Typography variant="body2" gutterBottom style={{ marginTop: '15px' }}>
+          Warga yang akan hadir pada kegiatan ini:
+        </Typography>
+        <Typography variant="body2" gutterBottom>
+          {/* nampilin list warga-warga yang hadir */}
+          {activity.hadirCount}
+        </Typography>
       </CardContent>
 
       <div style={{ padding: '10px' }}>
         <Button color="primary" variant="contained" fullWidth>
-          Saya akan hadir
+          {/* logic untuk nambahin hadir count && nambahin profile picture warga / nama warga */}
+          {/* kalau udah pencet tombol hadir, tulisannya berubah jadi Saya Akan Hadir */}
+          Hadir
         </Button>
       </div>
     </Card>
