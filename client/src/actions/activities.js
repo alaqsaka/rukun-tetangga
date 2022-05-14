@@ -30,3 +30,13 @@ export const updateActivity = (id, activity) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const deleteActivity = (id) => async (dispatch) => {
+  try {
+    await api.deleteActivity(id);
+
+    dispatch({ type: 'DELETE', payload: id });
+  } catch (error) {
+    console.log(error);
+  }
+};

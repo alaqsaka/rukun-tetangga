@@ -45,3 +45,16 @@ export const updateActivity = async (req, res) => {
 
   res.json(updatedActivity);
 };
+
+export const deleteActivity = async (req, res) => {
+  const { id } = req.params;
+
+  // mengecek apakah id tersebut adalah id yang disediakan sama mongoose
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("Tidak ada kegiatan dengan id tersebut");
+
+  console.log("delete");
+  await ActivityPost.findByIdAndRemove(id);
+
+  res.json({ message: "Kegiatan berhasil dihapus" });
+};

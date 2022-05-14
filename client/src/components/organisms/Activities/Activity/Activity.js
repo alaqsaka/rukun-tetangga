@@ -13,9 +13,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import useStyles from './styles';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { deleteActivity } from '../../../../actions/activities';
 
 const Activity = ({ activity, setCurrentId }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   let image = JSON.parse(activity.selectedFile[0]);
 
@@ -57,7 +60,11 @@ const Activity = ({ activity, setCurrentId }) => {
           <ThumbUpAltIcon fontSize="small" />
           Suka
         </Button>
-        <Button size="small" color="primary" onClick={() => {}}>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => dispatch(deleteActivity(activity._id))}
+        >
           <DeleteIcon fontSize="small" />
           Hapus
         </Button>

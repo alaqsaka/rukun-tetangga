@@ -9,3 +9,4 @@ export const createActivity = (newActivity) => axios.post(url, newActivity);
 // manggil api dari /activities/:id -> ada di routes folder server
 export const updateActivity = (id, updatedActivity) =>
   axios.patch(`${url}/${id}`, updatedActivity);
+export const deleteActivity = (id) => axios.delete(`${url}/${id}`);

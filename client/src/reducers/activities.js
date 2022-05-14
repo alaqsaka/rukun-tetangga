@@ -8,7 +8,8 @@ export default (activities = [], action) => {
       return activities.map((activity) =>
         activity._id === action.payload._id ? action.payload : activity
       );
-
+    case 'DELETE':
+      return activities.filter((activity) => activity._id !== action.payload);
     default:
       return activities;
   }
