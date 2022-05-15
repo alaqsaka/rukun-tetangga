@@ -93,8 +93,34 @@ const Form = ({ currentId, setCurrentId }) => {
           onChange={(e) =>
             setActivityData({ ...activityData, namaKegiatan: e.target.value })
           }
+          error={
+            activityData.namaKegiatan.length <= 10 &&
+            activityData.namaKegiatan !== ''
+              ? true
+              : false
+          }
+          helperText={
+            activityData.namaKegiatan.length <= 10 &&
+            activityData.namaKegiatan !== ''
+              ? 'Nama kegiatan harus memiliki huruf > 10'
+              : true
+          }
+          required
         />
         <TextField
+          error={
+            activityData.deskripsiKegiatan.length <= 10 &&
+            activityData.deskripsiKegiatan !== ''
+              ? true
+              : false
+          }
+          helperText={
+            activityData.deskripsiKegiatan.length <= 10 &&
+            activityData.deskripsiKegiatan !== ''
+              ? 'Deskripsi kegiatan harus memiliki huruf > 10'
+              : true
+          }
+          required
           name="deskripsiKegiatan"
           variant="outlined"
           label="Deskripsi Kegiatan"
@@ -121,6 +147,8 @@ const Form = ({ currentId, setCurrentId }) => {
           }
         /> */}
         <TextField
+          required
+          // set default value to now
           id="date"
           label="Tanggal Kegiatan"
           type="date"
@@ -143,6 +171,7 @@ const Form = ({ currentId, setCurrentId }) => {
           variant="outlined"
           label="Waktu Kegiatan"
           fullWidth
+          required
           value={activityData.waktuKegiatan}
           onChange={(e) =>
             setActivityData({ ...activityData, waktuKegiatan: e.target.value })
@@ -157,6 +186,19 @@ const Form = ({ currentId, setCurrentId }) => {
           onChange={(e) =>
             setActivityData({ ...activityData, tempatKegiatan: e.target.value })
           }
+          error={
+            activityData.tempatKegiatan.length <= 5 &&
+            activityData.tempatKegiatan !== ''
+              ? true
+              : false
+          }
+          helperText={
+            activityData.tempatKegiatan.length <= 5 &&
+            activityData.tempatKegiatan !== ''
+              ? 'Tempat kegiatan harus lebih spesifik'
+              : true
+          }
+          required
         />
         <div className={classes.fileInput}>
           <FileBase
@@ -176,6 +218,7 @@ const Form = ({ currentId, setCurrentId }) => {
           size="large"
           fullWidth
           type="submit"
+          disabled={activityData.namaKegiatan == ''}
         >
           Buat Kegiatan
         </Button>
