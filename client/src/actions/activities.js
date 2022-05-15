@@ -1,10 +1,17 @@
 import * as api from '../api';
+import {
+  FETCH_ALL,
+  CREATE,
+  UPDATE,
+  DELETE
+  // LIKE
+} from '../constants/actionTypes';
 
 // Action Creators
 export const getActivities = () => async (dispatch) => {
   try {
     const { data } = await api.fetchActivities();
-    dispatch({ type: 'FETCH_ALL', payload: data });
+    dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
     console.log(error.message);
   }
@@ -14,7 +21,7 @@ export const createActivity = (activity) => async (dispatch) => {
   try {
     const { data } = await api.createActivity(activity);
 
-    dispatch({ type: 'CREATE', payload: data });
+    dispatch({ type: CREATE, payload: data });
   } catch (error) {
     console.log(error);
   }
@@ -25,7 +32,7 @@ export const updateActivity = (id, activity) => async (dispatch) => {
     const { data } = await api.updateActivity(id, activity);
     // API ini mengembalikan data kegiatan yang udah di-update
 
-    dispatch({ type: 'UPDATE', payload: data });
+    dispatch({ type: UPDATE, payload: data });
   } catch (error) {
     console.log(error);
   }
@@ -35,7 +42,7 @@ export const deleteActivity = (id) => async (dispatch) => {
   try {
     await api.deleteActivity(id);
 
-    dispatch({ type: 'DELETE', payload: id });
+    dispatch({ type: DELETE, payload: id });
   } catch (error) {
     console.log(error);
   }
@@ -45,7 +52,7 @@ export const likeActivity = (id) => async (dispatch) => {
   try {
     const { data } = await api.likeActivity(id);
 
-    dispatch({ type: 'UPDATE', payload: data });
+    dispatch({ type: UPDATE, payload: data });
   } catch (error) {
     console.log(error);
   }
