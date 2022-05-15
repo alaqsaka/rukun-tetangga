@@ -218,7 +218,14 @@ const Form = ({ currentId, setCurrentId }) => {
           size="large"
           fullWidth
           type="submit"
-          disabled={activityData.namaKegiatan == ''}
+          disabled={
+            activityData.namaKegiatan.length < 10 &&
+            activityData.waktuKegiatan === '' &&
+            activityData.tempatKegiatan === '' &&
+            activityData.tanggalKegiatan === '' &&
+            activityData.deskripsiKegiatan.length < 10 &&
+            activityData.selectedFile.length === 0
+          }
         >
           Buat Kegiatan
         </Button>
