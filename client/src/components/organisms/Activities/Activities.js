@@ -11,7 +11,7 @@ const Activities = ({ setCurrentId }) => {
   // console.log(JSON.parse(activities[0].selectedFile));
   return (
     // Jika engga ada value di dalam array activities maka tampilkan circularprogress
-    <div style={{ marginTop: '20px' }}>
+    <div>
       {!activities.length ? (
         <CircularProgress />
       ) : (
