@@ -1,6 +1,7 @@
 import { makeStyles } from '@mui/styles';
+import { deepPurple } from '@mui/material/colors';
 
-const styles = () => {
+const styles = (theme) => {
   return {
     toolBar: {
       height: '10vh',
@@ -25,6 +26,39 @@ const styles = () => {
     },
     menuIcon: {
       color: '#000'
+    },
+    image: {
+      marginLeft: '15px'
+    },
+    toolbar: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      width: '400px'
+    },
+    profile: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      width: '400px',
+      [theme.breakpoints.down('md')]: {
+        width: '100%',
+        justifyContent: 'start'
+      }
+    },
+    userName: {
+      display: 'flex',
+      // alignItems: 'center',
+      color: 'red'
+    },
+    brandContainer: {
+      display: 'flex',
+      alignItems: 'center'
+    },
+    purple: {
+      color: theme.palette.getContrastText(deepPurple[500]),
+      backgroundColor: deepPurple[500]
+    },
+    logout: {
+      marginLeft: '20px !important'
     }
   };
 };

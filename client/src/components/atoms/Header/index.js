@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   AppBar,
   Link,
@@ -7,7 +8,10 @@ import {
   ListItem,
   ListItemText,
   IconButton,
-  Drawer
+  Drawer,
+  Typography,
+  Avatar,
+  Button
 } from '@mui/material';
 import React from 'react';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
@@ -78,15 +82,54 @@ const Header = (props) => {
       <List>
         {links.map((link) => (
           <ListItem button key={link.id}>
-            <ListItemText primary={link.route} />
+            <Link href={link.url} underline="none">
+              <ListItemText primary={link.route} />
+            </Link>
           </ListItem>
         ))}
+        <ListItem>
+          <ListItemText>
+            <UserAuth />
+          </ListItemText>
+        </ListItem>
       </List>
     </Box>
   );
 
+  const user = false;
+
+  const UserAuth = () => {
+    return (
+      <div>
+        {user ? (
+          // if user logged in
+          <div className={classes.profile}>
+            <Avatar className={classes.purple} alt="" src="">
+              {/* {user.result.name.charAt(0)} */}A
+            </Avatar>
+            <Button
+              variant="contained"
+              className={classes.logout}
+              color="secondary"
+            >
+              Logout
+            </Button>
+          </div>
+        ) : (
+          <>
+            <Link underline="none">
+              <Button href="/auth" underline="none" variant="contained">
+                Sign In
+              </Button>
+            </Link>
+          </>
+        )}
+      </div>
+    );
+  };
+
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Box sx={{ marginBottom: '70px' }}>
@@ -118,24 +161,29 @@ const Header = (props) => {
                 </Drawer>
               </Box>
             ) : (
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  flexGrow: '0.1'
-                }}
-              >
-                {links.map((link) => (
-                  <Link
-                    href={link.url}
-                    underline="none"
-                    key={link.id}
-                    className={classes.link}
-                  >
-                    {link.route}
-                  </Link>
-                ))}
-              </Box>
+              <>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    flexGrow: '0.1'
+                  }}
+                >
+                  {links.map((link) => (
+                    <Link
+                      href={link.url}
+                      underline="none"
+                      key={link.id}
+                      className={classes.link}
+                    >
+                      {link.route}
+                    </Link>
+                  ))}
+                </Box>
+                <Link underline="none">
+                  <UserAuth />
+                </Link>
+              </>
             )}
           </Toolbar>
         </AppBar>

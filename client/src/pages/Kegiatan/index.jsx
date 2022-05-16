@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grow, Container, Grid, Typography } from '@mui/material';
+import { Grow, Grid, Typography } from '@mui/material';
 import { Activities, Form } from '../../components/organisms';
 import { useDispatch } from 'react-redux';
 import { getActivities } from '../../actions/activities';
@@ -16,7 +16,7 @@ const Kegiatan = () => {
 
   return (
     <Grow in>
-      <Container maxWidth="xl" style={{ marginTop: '110px' }}>
+      <div>
         <Typography variant="h4">Kegiatan</Typography>
         <Grid
           container
@@ -32,7 +32,7 @@ const Kegiatan = () => {
             <Form currentId={currentId} setCurrentId={setCurrentId} />
           </Grid>
         </Grid>
-      </Container>
+      </div>
     </Grow>
   );
 };
