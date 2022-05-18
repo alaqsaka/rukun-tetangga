@@ -27,12 +27,15 @@ import Button from './Button';
 const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
+
   const handleShowConfirmPassword = () =>
     setShowConfirmPassword(
       (prevShowConfirmPassword) => !prevShowConfirmPassword
     );
+
   const INITIAL_FORM_STATE = {
     namaDepan: '',
     namaBelakang: '',
@@ -67,9 +70,18 @@ const Auth = () => {
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    handleShowPassword(false);
-    handleShowConfirmPassword(false);
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+    setShowConfirmPassword(
+      (prevShowConfirmPassword) => !prevShowConfirmPassword
+    );
   };
+
+  const handleReset = () => {
+    // if (!window.confirm('Reset?')) {
+    //   throw new Error('Cancel reset');
+    // }
+  };
+
   return (
     <Container component="main" maxWidth="xs" style={{ marginTop: '100px' }}>
       <Paper className={classes.paper} elevation={3}>
@@ -91,6 +103,7 @@ const Auth = () => {
           onSubmit={(values) => {
             console.log(values);
           }}
+          onReset={handleReset}
         >
           <Form>
             <Grid container spacing={2}>
@@ -170,7 +183,7 @@ const Auth = () => {
             </Grid>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Button onClick={switchMode} variant="text">
+                <Button onClick={switchMode} variant="text" type="reset">
                   {isSignup
                     ? 'Sudah punya akun? Masuk'
                     : 'Belum punya akun? Daftar'}
