@@ -2,7 +2,6 @@
 import React from 'react';
 import {
   Avatar,
-  Button,
   Paper,
   Grid,
   Typography,
@@ -22,6 +21,8 @@ import Input from './Input';
 import * as Yup from 'yup';
 import Select from './Select';
 import genders from '../../data/genders.json';
+import roles from '../../data/roles.json';
+import Button from './Button';
 
 const Auth = () => {
   const INITIAL_FORM_STATE = {
@@ -44,7 +45,7 @@ const Auth = () => {
       .required('Nomor handphone tidak boleh kosong'),
     alamat: Yup.string().required('Alamat tidak boleh kosong'),
     jenisKelamin: Yup.string().required('Jenis kelamin tidak boleh kosong'),
-    password: Yup.string().required('Password tidak boleh kosong'),
+    password: Yup.string().required('Kata sandi tidak boleh kosong'),
     confirmPassword: Yup.string().required('Konfirmasi Password'),
     role: Yup.string().required('Apakah anda warga atau ketua?')
   });
@@ -116,6 +117,34 @@ const Auth = () => {
                       label="Jenis Kelamin"
                       options={genders}
                     />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Select
+                      name="role"
+                      label="Peran anda di RT"
+                      options={roles}
+                    />
+                  </Grid>
+
+                  <Input
+                    name="password"
+                    label="Kata Sandi"
+                    type="password"
+                    handleChange={handleChange}
+                    xs={6}
+                  />
+
+                  <Input
+                    name="confirmPassword"
+                    label="Konfirmasi Kata Sandi"
+                    handleChange={handleChange}
+                    type="password"
+                    xs={6}
+                  />
+
+                  <Grid item xs={12}>
+                    <Button>Buat akun baru</Button>
                   </Grid>
 
                   {/* <FormControl

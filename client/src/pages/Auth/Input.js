@@ -37,7 +37,7 @@ const Input = ({
         type={type}
         {...configTextField}
         InputProps={
-          name === 'password' && {
+          type === 'password' && {
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton onClick={handleShowPassword}>
