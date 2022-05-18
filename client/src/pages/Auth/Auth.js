@@ -59,7 +59,7 @@ const Auth = () => {
   const handleChange = () => {};
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" style={{ marginTop: '100px' }}>
       <Paper className={classes.paper} elevation={3}>
         <Typography variant="h5" style={{ textAlign: 'center' }}>
           Selamat Datang
