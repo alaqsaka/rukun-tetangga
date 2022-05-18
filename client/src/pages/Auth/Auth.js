@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Avatar,
   Paper,
@@ -25,6 +25,14 @@ import roles from '../../data/roles.json';
 import Button from './Button';
 
 const Auth = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const handleShowPassword = () =>
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  const handleShowConfirmPassword = () =>
+    setShowConfirmPassword(
+      (prevShowConfirmPassword) => !prevShowConfirmPassword
+    );
   const INITIAL_FORM_STATE = {
     namaDepan: '',
     namaBelakang: '',
@@ -52,12 +60,16 @@ const Auth = () => {
 
   const classes = useStyles();
 
-  const isSignup = true;
-
   const handleSubmit = () => {};
 
   const handleChange = () => {};
+  const [isSignup, setIsSignup] = useState(false);
 
+  const switchMode = () => {
+    setIsSignup((prevIsSignup) => !prevIsSignup);
+    handleShowPassword(false);
+    handleShowConfirmPassword(false);
+  };
   return (
     <Container component="main" maxWidth="xs" style={{ marginTop: '100px' }}>
       <Paper className={classes.paper} elevation={3}>
@@ -98,12 +110,16 @@ const Auth = () => {
                     xs={6}
                     half
                   />
-                  <Input
-                    name="phone"
-                    label="Nomor Telepon"
-                    handleChange={handleChange}
-                    xs={6}
-                  />
+                </>
+              )}
+              <Input
+                name="phone"
+                label="Nomor Telepon"
+                handleChange={handleChange}
+                xs={6}
+              />
+              {isSignup && (
+                <>
                   <Input
                     name="alamat"
                     label="Alamat Rumah"
@@ -126,50 +142,40 @@ const Auth = () => {
                       options={roles}
                     />
                   </Grid>
-
-                  <Input
-                    name="password"
-                    label="Kata Sandi"
-                    type="password"
-                    handleChange={handleChange}
-                    xs={6}
-                  />
-
+                </>
+              )}
+              <Input
+                name="password"
+                label="Kata Sandi"
+                type={showPassword ? 'text' : 'password'}
+                handleShowPassword={handleShowPassword}
+                handleChange={handleChange}
+                xs={6}
+              />
+              {isSignup && (
+                <>
                   <Input
                     name="confirmPassword"
                     label="Konfirmasi Kata Sandi"
                     handleChange={handleChange}
-                    type="password"
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    handleShowPassword={handleShowConfirmPassword}
                     xs={6}
                   />
-
-                  <Grid item xs={12}>
-                    <Button>Buat akun baru</Button>
-                  </Grid>
-
-                  {/* <FormControl
-                    fullWidth
-                    style={{ paddingLeft: '16px', paddingRight: '16px' }}
-                  >
-                    <InputLabel
-                      id="demo-simple-select-label"
-                      style={{ paddingLeft: '16px', paddingRight: '16px' }}
-                    >
-                      Apakah Anda warga atau ketua?
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={INITIAL_FORM_STATE.role}
-                      label="Apakah Anda warga atau ketua?"
-                      onChange={handleChange}
-                    >
-                      <MenuItem value="warga">Warga</MenuItem>
-                      <MenuItem value="ketua">Ketua</MenuItem>
-                    </Select>
-                  </FormControl> */}
                 </>
               )}
+              <Grid item xs={12}>
+                <Button>{isSignup ? 'Buat akun baru' : 'Masuk'}</Button>
+              </Grid>
+            </Grid>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Button onClick={switchMode} variant="text">
+                  {isSignup
+                    ? 'Sudah punya akun? Masuk'
+                    : 'Belum punya akun? Daftar'}
+                </Button>
+              </Grid>
             </Grid>
           </Form>
         </Formik>
