@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { TextField, Grid, InputAdornment, IconButton } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useField } from 'formik';
 
 const Input = ({
   half,
@@ -12,6 +14,16 @@ const Input = ({
   handleChange,
   handleShowPassword
 }) => {
+  const [field, mata] = useField(name);
+  const configTextField = {
+    ...field
+  };
+
+  if (mata && mata.touched && mata.error) {
+    configTextField.error = true;
+    configTextField.helperText = mata.error;
+  }
+
   return (
     <Grid item xs={12} sm={half ? 6 : 12}>
       <TextField
@@ -23,6 +35,7 @@ const Input = ({
         label={label}
         autoFocus={autoFocus}
         type={type}
+        {...configTextField}
         InputProps={
           name === 'password' && {
             endAdornment: (
