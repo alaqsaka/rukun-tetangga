@@ -13,13 +13,15 @@ import {
   Avatar,
   Button
 } from '@mui/material';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import PropTypes from 'prop-types';
 import MenuIcon from '@mui/icons-material/Menu';
 import useStyles from './styles';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -48,6 +50,10 @@ ElevationScroll.propTypes = {
 
 const Header = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const navigate = useHistory();
+  const location = useLocation();
+
   const links = [
     {
       id: 1,
@@ -96,7 +102,21 @@ const Header = (props) => {
     </Box>
   );
 
-  const user = false;
+  // const user = false;
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+  const logout = () => {
+    dispatch({ type: 'LOGOUT' });
+    history.push('/');
+    setUser(null);
+    window.location.reload(false);
+  };
+
+  useEffect(() => {
+    const token = user?.token;
+
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  }, [location]);
 
   const UserAuth = () => {
     return (
@@ -111,6 +131,7 @@ const Header = (props) => {
               variant="contained"
               className={classes.logout}
               color="secondary"
+              onClick={logout}
             >
               Logout
             </Button>

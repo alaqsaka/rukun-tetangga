@@ -83,7 +83,7 @@ const Auth = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs" style={{ marginTop: '100px' }}>
+    <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
         <Typography variant="h5" style={{ textAlign: 'center' }}>
           Selamat Datang
