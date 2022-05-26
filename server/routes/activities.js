@@ -6,13 +6,14 @@ import {
   deleteActivity,
   likeActivity,
 } from "../controllers/activities.js";
+import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
 router.get("/", getActivities);
-router.post("/", createActivity);
-router.patch("/:id", updateActivity);
-router.delete("/:id", deleteActivity);
-router.patch("/:id/likeActivity", likeActivity);
+router.post("/", auth, createActivity);
+router.patch("/:id", auth, updateActivity);
+router.delete("/:id", auth, deleteActivity);
+router.patch("/:id/likeActivity", auth, likeActivity);
 
 export default router;

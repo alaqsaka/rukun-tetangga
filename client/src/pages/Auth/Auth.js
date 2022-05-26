@@ -23,8 +23,11 @@ import Select from './Select';
 import genders from '../../data/genders.json';
 import roles from '../../data/roles.json';
 import Button from './Button';
+import { useDispatch } from 'react-redux';
+import { signin, signup } from '../../actions/auth';
 
 const Auth = () => {
+  const dispatch = useDispatch;
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -47,6 +50,19 @@ const Auth = () => {
     role: ''
   };
 
+  const INITIAL_FORM_STATE_SIGNUP = {
+    namaDepan: '',
+    namaBelakang: '',
+    phone: '',
+    alamat: '',
+    jenisKelamin: '',
+    password: '',
+    confirmPassword: '',
+    role: ''
+  };
+
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+
   const FORM_VALIDATION = Yup.object().shape({
     namaDepan: Yup.string().required('Nama depan tidak boleh kosong'),
     namaBelakang: Yup.string().required('Nama belakang tidak boleh kosong'),
@@ -61,11 +77,24 @@ const Auth = () => {
     role: Yup.string().required('Apakah anda warga atau ketua?')
   });
 
+  const FORM_VALIDATION_SIGNIN = Yup.object().shape({
+    phone: Yup.number()
+      .integer()
+      .typeError('Masukkan nomor handphone yang sesuai')
+      .required('Nomor handphone tidak boleh kosong'),
+    password: Yup.string().required('Kata sandi tidak boleh kosong')
+  });
+
   const classes = useStyles();
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    console.log('submit');
+    console.log(formData);
+  };
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
   const [isSignup, setIsSignup] = useState(false);
 
   const switchMode = () => {
@@ -82,6 +111,14 @@ const Auth = () => {
     // }
   };
 
+  let initalFormValues = {};
+
+  if (isSignup) {
+    initalFormValues = { ...INITIAL_FORM_STATE };
+  } else {
+    initalFormValues = { ...INITIAL_FORM_STATE_SIGNUP };
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
@@ -97,11 +134,19 @@ const Auth = () => {
         <Typography variant="h6">{isSignup ? 'Sign Up' : 'Sign In'}</Typography>
         <Formik
           initialValues={{
-            ...INITIAL_FORM_STATE
+            ...initalFormValues
           }}
-          validationSchema={FORM_VALIDATION}
+          validationSchema={isSignup ? FORM_VALIDATION : FORM_VALIDATION_SIGNIN}
           onSubmit={(values) => {
-            console.log(values);
+            if (isSignup) {
+              // signup
+              console.log(values);
+              dispatch(signup(values, history));
+            } else {
+              // signin
+              console.log(values);
+              dispatch(signin(values, history));
+            }
           }}
           onReset={handleReset}
         >
