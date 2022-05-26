@@ -8,7 +8,7 @@ const wargaSchema = mongoose.Schema({
   password: { type: String, required: true },
   alamatRumah: { type: String, required: true },
   jenisKelamin: { type: String, required: true },
-  community_id: { type: String, required: true },
+  // community_id: { type: String, required: true },
   id: { type: String },
 });
 

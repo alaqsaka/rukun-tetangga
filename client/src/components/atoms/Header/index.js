@@ -51,7 +51,7 @@ ElevationScroll.propTypes = {
 const Header = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const navigate = useHistory();
+  const history = useHistory();
   const location = useLocation();
 
   const links = [
@@ -94,9 +94,7 @@ const Header = (props) => {
           </ListItem>
         ))}
         <ListItem>
-          <ListItemText>
-            <UserAuth />
-          </ListItemText>
+          <ListItemText>{/* <UserAuth /> */}</ListItemText>
         </ListItem>
       </List>
     </Box>
@@ -118,36 +116,36 @@ const Header = (props) => {
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 
-  const UserAuth = () => {
-    return (
-      <div>
-        {user ? (
-          // if user logged in
-          <div className={classes.profile}>
-            <Avatar className={classes.purple} alt="" src="">
-              {/* {user.result.name.charAt(0)} */}A
-            </Avatar>
-            <Button
-              variant="contained"
-              className={classes.logout}
-              color="secondary"
-              onClick={logout}
-            >
-              Logout
-            </Button>
-          </div>
-        ) : (
-          <>
-            <Link underline="none">
-              <Button href="/auth" underline="none" variant="contained">
-                Sign In
-              </Button>
-            </Link>
-          </>
-        )}
-      </div>
-    );
-  };
+  // const UserAuth = () => {
+  //   return (
+  //     <div>
+  //       {user ? (
+  //         // if user logged in
+  //         <div className={classes.profile}>
+  //           <Avatar className={classes.purple} alt="" src="">
+  //             {/* {user.result.name.charAt(0)} */}A
+  //           </Avatar>
+  //           <Button
+  //             variant="contained"
+  //             className={classes.logout}
+  //             color="secondary"
+  //             onClick={logout}
+  //           >
+  //             Logout
+  //           </Button>
+  //         </div>
+  //       ) : (
+  //         <>
+  //           <Link underline="none">
+  //             <Button href="/auth" underline="none" variant="contained">
+  //               Sign In
+  //             </Button>
+  //           </Link>
+  //         </>
+  //       )}
+  //     </div>
+  //   );
+  // };
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
@@ -201,12 +199,34 @@ const Header = (props) => {
                     </Link>
                   ))}
                 </Box>
-                <Link underline="none">
-                  <UserAuth />
-                </Link>
+                <Link underline="none">{/* <UserAuth /> */}</Link>
               </>
             )}
           </Toolbar>
+          {user ? (
+            // if user logged in
+            <div className={classes.profile}>
+              <Avatar className={classes.purple} alt="" src="">
+                {/* {user.result.name.charAt(0)} */}A
+              </Avatar>
+              <Button
+                variant="contained"
+                className={classes.logout}
+                color="secondary"
+                onClick={logout}
+              >
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <>
+              <Link underline="none">
+                <Button href="/auth" underline="none" variant="contained">
+                  Sign In
+                </Button>
+              </Link>
+            </>
+          )}
         </AppBar>
       </ElevationScroll>
     </Box>

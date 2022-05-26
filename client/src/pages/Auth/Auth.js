@@ -25,11 +25,13 @@ import roles from '../../data/roles.json';
 import Button from './Button';
 import { useDispatch } from 'react-redux';
 import { signin, signup } from '../../actions/auth';
+import { useHistory } from 'react-router-dom';
 
 const Auth = () => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const history = useHistory();
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -87,9 +89,14 @@ const Auth = () => {
 
   const classes = useStyles();
 
-  const handleSubmit = () => {
+  const handleSubmit = (values) => {
     console.log('submit');
     console.log(formData);
+    dispatch(signup(values, history));
+  };
+
+  const handleSubmitSignIn = (values) => {
+    dispatch(signin(values, history));
   };
 
   const handleChange = (e) => {
@@ -141,11 +148,13 @@ const Auth = () => {
             if (isSignup) {
               // signup
               console.log(values);
-              dispatch(signup(values, history));
+              // dispatch(signup(values, history));
+              handleSubmit(values);
             } else {
               // signin
               console.log(values);
-              dispatch(signin(values, history));
+              // dispatch(signin(values, history));
+              handleSubmitSignIn(values);
             }
           }}
           onReset={handleReset}
