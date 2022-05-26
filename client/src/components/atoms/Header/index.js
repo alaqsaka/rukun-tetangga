@@ -207,7 +207,7 @@ const Header = (props) => {
             // if user logged in
             <div className={classes.profile}>
               <Avatar className={classes.purple} alt="" src="">
-                {/* {user.result.name.charAt(0)} */}A
+                {user.result.namaDepan.charAt(0)}
               </Avatar>
               <Button
                 variant="contained"
