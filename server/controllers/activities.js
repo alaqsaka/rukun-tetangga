@@ -62,11 +62,22 @@ export const deleteActivity = async (req, res) => {
 export const likeActivity = async (req, res) => {
   const { id } = req.params;
 
+  if (!req.userId) return res.json({ message: "Unauthenticated" });
+
   // mengecek apakah id tersebut adalah id yang disediakan sama mongoose
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("Tidak ada kegiatan dengan id tersebut");
 
   const activity = await ActivityPost.findById(id);
+
+  const index = postMessage.likes.findIndex((id) => id === String(req.userId));
+
+  if (index === -1) {
+    // pushing userid to activity array likes
+    activity.likes.push(req.userId);
+  } else {
+    activity.likes = activity.likes.filter((id) => id !== String(req.userId));
+  }
 
   const updatedActivity = await ActivityPost.findByIdAndUpdate(
     id,
