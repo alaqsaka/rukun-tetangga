@@ -12,9 +12,9 @@ const ketuaSchema = mongoose.Schema({
   password: { type: String, required: true },
   alamatRumah: { type: String, required: true },
   jenisKelamin: { type: String, required: true },
-  community_id: { type: String },
-  community_nama: { type: String },
-  community_address: { type: String },
+  community_id: { type: String, default: "" },
+  community_nama: { type: String, default: "" },
+  community_address: { type: String, default: "" },
   warga: [
     {
       type: mongoose.Schema.Types.ObjectId,
