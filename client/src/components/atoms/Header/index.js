@@ -22,6 +22,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
+import UserAuthHeader from './UserAuthHeader.js';
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -94,7 +95,22 @@ const Header = (props) => {
           </ListItem>
         ))}
         <ListItem>
-          <ListItemText>{/* <UserAuth /> */}</ListItemText>
+          <ListItemText>
+            <Link underline="none">
+              {user ? (
+                <UserAuthHeader
+                  namaDepan={user.result.namaDepan.charAt(0)}
+                  logout={logout}
+                />
+              ) : (
+                <Link underline="none">
+                  <Button href="/auth" underline="none" variant="contained">
+                    Sign In
+                  </Button>
+                </Link>
+              )}
+            </Link>
+          </ListItemText>
         </ListItem>
       </List>
     </Box>
@@ -199,34 +215,23 @@ const Header = (props) => {
                     </Link>
                   ))}
                 </Box>
-                <Link underline="none">{/* <UserAuth /> */}</Link>
+                <Link underline="none">
+                  {user ? (
+                    <UserAuthHeader
+                      namaDepan={user.result.namaDepan.charAt(0)}
+                      logout={logout}
+                    />
+                  ) : (
+                    <Link underline="none">
+                      <Button href="/auth" underline="none" variant="contained">
+                        Sign In
+                      </Button>
+                    </Link>
+                  )}
+                </Link>
               </>
             )}
           </Toolbar>
-          {user ? (
-            // if user logged in
-            <div className={classes.profile}>
-              <Avatar className={classes.purple} alt="" src="">
-                {user.result.namaDepan.charAt(0)}
-              </Avatar>
-              <Button
-                variant="contained"
-                className={classes.logout}
-                color="secondary"
-                onClick={logout}
-              >
-                Logout
-              </Button>
-            </div>
-          ) : (
-            <>
-              <Link underline="none">
-                <Button href="/auth" underline="none" variant="contained">
-                  Sign In
-                </Button>
-              </Link>
-            </>
-          )}
         </AppBar>
       </ElevationScroll>
     </Box>
