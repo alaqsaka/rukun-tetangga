@@ -20,6 +20,11 @@ const AppRoutes = [
     path: '/auth',
     component: lazy(() => import('../pages/Auth/Auth.js')),
     exact: true
+  },
+  {
+    path: '/lengkapi-data',
+    component: lazy(() => import('../pages/LengkapiData')),
+    exact: true
   }
 ];
 
