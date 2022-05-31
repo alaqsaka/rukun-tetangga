@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import KetuaSchema from "../models/ketua.js";
 import WargaSchema from "../models/warga.js";
+import mongoose from "mongoose";
 
 export const signin = async (req, res) => {
   // phone, password
@@ -150,5 +151,36 @@ export const signup = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error });
     console.log(error);
+  }
+};
+
+export const lengkapi_data_ketua = async (req, res) => {
+  console.log(req.params);
+  console.log(req.body);
+  const { id } = req.params;
+  const { community_address, community_id, community_nama } = req.body;
+  console.log("address ", community_address);
+  console.log(id);
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("Tidak ada user");
+
+  const result = await KetuaSchema.updateOne(
+    { _id: id },
+    {
+      $set: {
+        community_address: community_address,
+        community_id: community_id,
+        community_nama: community_nama,
+      },
+    }
+  );
+
+  console.log(result);
+
+  res.json("Berhasil ditambahkan");
+
+  try {
+  } catch (error) {
+    res.status(500).json({ message: error });
   }
 };

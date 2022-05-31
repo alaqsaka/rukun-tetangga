@@ -21,13 +21,20 @@ const Welcome = () => {
   if (user) {
     console.log('ada');
     console.log(user.result);
-    if (
-      user.result.community_address === '' &&
-      user.result.community_id === '' &&
-      user.result.community_nama === ''
-    ) {
-      console.log('belum lengkap');
-      history.push('/lengkapi-data');
+    if (user.result.role === 'ketua') {
+      if (
+        user.result.community_address === '' &&
+        user.result.community_id === '' &&
+        user.result.community_nama === ''
+      ) {
+        console.log('belum lengkap');
+        history.push('/lengkapi-data');
+      }
+    } else {
+      console.log('warga');
+      if (user.result.community_id == '') {
+        history.push('/lengkapi-data');
+      }
     }
   }
 

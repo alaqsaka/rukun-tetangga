@@ -148,9 +148,12 @@ const LengkapiData = () => {
                 </>
               ) : (
                 <>
-                  <Typography variant="h6">
-                    Masukkan kode yang diberikan oleh ketua RT-mu ya
-                  </Typography>
+                  <Grid item md={12}>
+                    <Typography variant="h6">
+                      Masukkan kode yang diberikan oleh ketua RT-mu ya
+                    </Typography>
+                  </Grid>
+
                   <Input
                     name="community_id"
                     label="Id community"
