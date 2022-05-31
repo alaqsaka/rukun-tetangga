@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { AUTH, LOGOUT } from '../constants/actionTypes';
+import { AUTH, LOGOUT, LENGKAPI_DATA_KETUA } from '../constants/actionTypes';
 
 const authReducer = (state = { authData: null }, action) => {
   switch (action.type) {
@@ -10,6 +10,11 @@ const authReducer = (state = { authData: null }, action) => {
       localStorage.clear();
 
       return { ...state, authData: null };
+    case LENGKAPI_DATA_KETUA:
+      //const localStorageData = localStorage.getItem('profile');
+      //console.log(localStorageData);
+      //console.log('dispatch reducer lengkapi data');
+      return { ...state, authData: action?.data };
     default:
       return state;
   }

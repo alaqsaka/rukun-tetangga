@@ -22,6 +22,7 @@ import * as Yup from 'yup';
 import Input from './Input';
 import { Formik, Form } from 'formik';
 import Button from './Button';
+import { lengkapi_data_ketua } from '../../actions/auth';
 
 const LengkapiData = () => {
   const classes = useStyles();
@@ -29,6 +30,14 @@ const LengkapiData = () => {
   const location = useLocation();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
+
+  if (
+    user.result.community_address != '' &&
+    user.result.community_id != '' &&
+    user.result.community_nama != ''
+  ) {
+    history.push('/');
+  }
 
   useEffect(() => {
     //const token = user?.token;
@@ -66,6 +75,8 @@ const LengkapiData = () => {
     console.log('submit');
     console.log(formData);
     console.log(values);
+    dispatch(lengkapi_data_ketua(values, user.result._id, history));
+    console.log('dispatch');
     //dispatch(signup(values, history));
   };
 

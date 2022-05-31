@@ -21,3 +21,5 @@ export const deleteActivity = (id) => API.delete(`/activities/${id}`);
 export const likeActivity = (id) => API.patch(`/activities/${id}/likeActivity`);
 export const signIn = (formData) => API.post(`/user/signin`, formData);
 export const signUp = (formData) => API.post(`/user/signup`, formData);
+export const lengkapi_data_ketua = (formData, id) =>
+  API.patch(`/user/lengkapi-data-ketua/${id}`, formData);
