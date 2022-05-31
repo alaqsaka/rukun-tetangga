@@ -12,7 +12,8 @@ const Input = ({
   autoFocus,
   type,
   handleChange,
-  handleShowPassword
+  handleShowPassword,
+  value
 }) => {
   const [field, mata] = useField(name);
   const configTextField = {
@@ -36,6 +37,7 @@ const Input = ({
         autoFocus={autoFocus}
         type={type}
         {...configTextField}
+        value={value}
         InputProps={
           (name === 'password' && {
             endAdornment: (

@@ -98,6 +98,17 @@ const LengkapiData = () => {
     initalFormValues = { ...INITIAL_FORM_STATE_WARGA };
   }
 
+  // generate community id
+  function makeid(length) {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
   return (
     <Container component="main" maxWidth="md">
       <Paper className={classes.paper} elevation={3}>
@@ -150,6 +161,7 @@ const LengkapiData = () => {
                     name="community_id"
                     label="Id community"
                     handleChange={handleChange}
+                    value={makeid(4)}
                   />
                   <Grid item md={12}>
                     <Typography variant="h6">
