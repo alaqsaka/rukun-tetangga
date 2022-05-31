@@ -158,7 +158,7 @@ const LengkapiData = () => {
                     handleChange={handleChange}
                   />
                   <Grid item md={12}>
-                    <Typography variant="body2">
+                    <Typography variant="h6">
                       Kode {formData.community_id}
                     </Typography>
                   </Grid>
