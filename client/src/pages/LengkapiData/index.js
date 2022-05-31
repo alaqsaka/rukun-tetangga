@@ -47,7 +47,7 @@ const LengkapiData = () => {
 
   const INITIAL_FORM_STATE_KETUA = {
     community_address: '',
-    community_id: '',
+    community_id: makeid(4),
     community_nama: ''
   };
 
@@ -75,6 +75,7 @@ const LengkapiData = () => {
     console.log('submit');
     console.log(formData);
     console.log(values);
+    //formData.community_id = makeid(4);
     dispatch(lengkapi_data_ketua(values, user.result._id, history));
     console.log('dispatch');
     //dispatch(signup(values, history));
@@ -156,13 +157,18 @@ const LengkapiData = () => {
                     label="Sebutan nama RT-mu"
                     handleChange={handleChange}
                   />
+                  <Grid item md={12}>
+                    <Typography variant="body2">
+                      Kode {formData.community_id}
+                    </Typography>
+                  </Grid>
 
-                  <Input
+                  {/* <Input
                     name="community_id"
                     label="Id community"
                     handleChange={handleChange}
                     value={makeid(4)}
-                  />
+                  /> */}
                   <Grid item md={12}>
                     <Typography variant="h6">
                       Kode ini yang nantinya kamu bagikan kepada warga ya!
