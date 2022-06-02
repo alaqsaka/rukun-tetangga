@@ -3,7 +3,8 @@ import {
   FETCH_ALL,
   CREATE,
   UPDATE,
-  LIKE
+  LIKE,
+  GET_COMMENTS
 } from '../constants/actionTypes';
 
 export default (activities = [], action) => {
@@ -17,6 +18,8 @@ export default (activities = [], action) => {
       return activities.map((activity) =>
         activity._id === action.payload._id ? action.payload : activity
       );
+    case GET_COMMENTS:
+      return action.payload;
     case DELETE:
       return activities.filter((activity) => activity._id !== action.payload);
     default:

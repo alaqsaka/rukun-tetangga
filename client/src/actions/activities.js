@@ -3,7 +3,8 @@ import {
   FETCH_ALL,
   CREATE,
   UPDATE,
-  DELETE
+  DELETE,
+  GET_COMMENTS
   // LIKE
 } from '../constants/actionTypes';
 
@@ -54,6 +55,16 @@ export const likeActivity = (id) => async (dispatch) => {
     const { data } = await api.likeActivity(id);
 
     dispatch({ type: UPDATE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getComments = (postId) => async (dispatch) => {
+  try {
+    const { data } = await api.getComments(postId);
+
+    dispatch({ type: GET_COMMENTS, payload: data });
   } catch (error) {
     console.log(error);
   }

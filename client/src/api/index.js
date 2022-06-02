@@ -5,6 +5,7 @@ const API = axios.create({ baseURL: 'http://localhost:3001' });
 
 export const fetchActivities = () => API.get(`/posts`);
 export const createActivity = (newActivity) => API.post('/posts', newActivity);
+export const getComments = (postId) => API.get(`/comments/${postId}`);
 
 // fungsi untuk mengupdate kegiatan, ngirim id sama update-an dari yang user masukin ke form
 // manggil api dari /activities/:id -> ada di routes folder server
