@@ -44,6 +44,8 @@ const KegiatanDetails = () => {
           namaBelakang: 'Warga'
         };
         setComments([...comments, commentToAdd]);
+
+        setnewComment('');
         dispatch(getComments(id));
       });
   };
@@ -80,6 +82,7 @@ const KegiatanDetails = () => {
                     onChange={(event) => {
                       setnewComment(event.target.value);
                     }}
+                    value={newComment}
                   />
                 </Grid>
                 <Grid item lg={1} xs={12}>
