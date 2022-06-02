@@ -17,6 +17,11 @@ const AppRoutes = [
     exact: true
   },
   {
+    path: '/kegiatan/:id',
+    component: lazy(() => import('../pages/KegiatanDetails')),
+    exact: true
+  },
+  {
     path: '/auth',
     component: lazy(() => import('../pages/Auth/Auth.js')),
     exact: true

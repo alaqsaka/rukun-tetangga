@@ -16,7 +16,7 @@ const Kegiatan = () => {
 
   return (
     <Grow in>
-      <div style={{ marginTop: '100px' }}>
+      <div>
         <Typography variant="h4">Kegiatan</Typography>
         <Grid
           container

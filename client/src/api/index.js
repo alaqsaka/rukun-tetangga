@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5000' });
+const API = axios.create({ baseURL: 'http://localhost:3001' });
 //const url = 'http://localhost:5000/activities';
 
-export const fetchActivities = () => API.get(`/activities`);
-export const createActivity = (newActivity) =>
-  API.post('/activities', newActivity);
+export const fetchActivities = () => API.get(`/posts`);
+export const createActivity = (newActivity) => API.post('/posts', newActivity);
 
 // fungsi untuk mengupdate kegiatan, ngirim id sama update-an dari yang user masukin ke form
 // manggil api dari /activities/:id -> ada di routes folder server
@@ -15,7 +14,7 @@ export const updateActivity = (id, updatedActivity) =>
 // fungsi untuk menghapus kegiatan, ngirim id kegiatan sebagai params
 // manggil api dari /activities/:id -> ada di routes folder server
 export const deleteActivity = (id) => API.delete(`/activities/${id}`);
-
+export const fetchPost = (id) => API.get(`/posts/${id}`);
 // fungsi untuk like kegiatan, ngirim id kegiatan sebagai params
 // manggil api dari /activities/:id -> ada di routes folder server
 export const likeActivity = (id) => API.patch(`/activities/${id}/likeActivity`);

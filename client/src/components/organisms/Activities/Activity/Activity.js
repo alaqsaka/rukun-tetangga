@@ -6,7 +6,8 @@ import {
   CardMedia,
   Button,
   Typography,
-  CardContent
+  CardContent,
+  ButtonBase
 } from '@mui/material';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -15,20 +16,26 @@ import useStyles from './styles';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { deleteActivity, likeActivity } from '../../../../actions/activities';
+import contoh_foto from '../../../../assets/images/group_of_friends.jpg';
+import { useHistory } from 'react-router-dom';
 
 const Activity = ({ activity, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  let image = JSON.parse(activity.selectedFile[0]);
+  const openPost = () => history.push(`/kegiatan/${activity.id}`);
+
+  //let image = JSON.parse(activity.selectedFile[0]);
 
   // fungsi untuk mengubah waktu (harinya) dari bahasa inggris ke bahasa indo
   return (
     <Card className={classes.card}>
       <CardMedia
         className={classes.media}
-        image={image['base64']}
+        image={contoh_foto}
         title={activity.namaKegiatan}
+        onClick={openPost}
       />
 
       <div className={classes.overlay}>
