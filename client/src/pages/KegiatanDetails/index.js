@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -12,10 +13,9 @@ const KegiatanDetails = () => {
   const classes = useStyles();
   const [postObject, setPostObject] = useState({});
   const dispatch = useDispatch();
-  const comments = useSelector((state) => state.activities);
-
-  console.log(comments);
-
+  //const comments = useSelector((state) => state.activities);
+  let [comments, setComments] = useState([]);
+  comments = useSelector((state) => state.activities);
   useEffect(() => {
     axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
       setPostObject(response.data);
@@ -24,6 +24,29 @@ const KegiatanDetails = () => {
 
     dispatch(getComments(id));
   }, []);
+
+  // new comment
+  const [newComment, setnewComment] = useState('');
+  const addComment = () => {
+    axios
+      .post('http://localhost:3001/comments', {
+        commentBody: newComment,
+        PostId: id,
+        namaDepan: 'Warga',
+        namaBelakang: 'Warga'
+      })
+      .then((response) => {
+        console.log('Comment added');
+        let commentToAdd = {
+          commentBody: newComment,
+          PostId: id,
+          namaDepan: 'Warga',
+          namaBelakang: 'Warga'
+        };
+        setComments([...comments, commentToAdd]);
+        dispatch(getComments(id));
+      });
+  };
 
   return (
     <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
@@ -54,10 +77,13 @@ const KegiatanDetails = () => {
                     label="Tambah Komentar"
                     variant="standard"
                     fullWidth
+                    onChange={(event) => {
+                      setnewComment(event.target.value);
+                    }}
                   />
                 </Grid>
                 <Grid item lg={1} xs={12}>
-                  <button>Kirim</button>
+                  <button onClick={addComment}>Kirim</button>
                 </Grid>
               </Grid>
               {comments?.map((comment) => (
