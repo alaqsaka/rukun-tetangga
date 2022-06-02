@@ -167,9 +167,9 @@ const Header = (props) => {
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box sx={{ marginBottom: '70px' }}>
+    <Box>
       <ElevationScroll {...props}>
-        <AppBar>
+        <AppBar style={{ position: 'relative' }}>
           <Toolbar className={classes.toolBar}>
             <Link href="/" underline="none">
               <a className={classes.logo}>Rukun Tetangga</a>

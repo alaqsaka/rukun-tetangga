@@ -42,7 +42,7 @@ function App() {
                   render={(props) => {
                     return (
                       <DashboardLayout>
-                        <Container maxWidth="xl">
+                        <Container maxWidth="xl" style={{ paddingTop: '20px' }}>
                           <Component {...props} />
                         </Container>
                       </DashboardLayout>
