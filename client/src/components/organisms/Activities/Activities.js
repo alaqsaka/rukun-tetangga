@@ -10,10 +10,6 @@ const Activities = ({ setCurrentId }) => {
   console.log(activities);
   console.log('activities abis post', activities);
 
-  // useEffect(() => {
-  //   console.log('re render');
-  // }, [activities]);
-
   // console.log(JSON.parse(activities[0].selectedFile));
   return (
     // Jika engga ada value di dalam array activities maka tampilkan circularprogress
