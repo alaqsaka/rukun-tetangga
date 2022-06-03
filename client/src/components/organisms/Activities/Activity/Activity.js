@@ -23,6 +23,7 @@ const Activity = ({ activity, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+  console.log('activity abis post', activity);
 
   const openPost = () => history.push(`/kegiatan/${activity.id}`);
 
@@ -49,7 +50,7 @@ const Activity = ({ activity, setCurrentId }) => {
         <Button
           style={{ color: 'white' }}
           size="small"
-          onClick={() => setCurrentId(activity._id)}
+          onClick={() => setCurrentId(activity.id)}
         >
           <MoreHorizIcon fontSize="medium" />
         </Button>
@@ -66,7 +67,7 @@ const Activity = ({ activity, setCurrentId }) => {
         <Button
           size="small"
           color="primary"
-          onClick={() => dispatch(likeActivity(activity._id))}
+          onClick={() => dispatch(likeActivity(activity.id))}
         >
           <ThumbUpAltIcon fontSize="small" />
           &nbsp; Suka &nbsp; {activity.likeCount}
@@ -74,7 +75,7 @@ const Activity = ({ activity, setCurrentId }) => {
         <Button
           size="small"
           color="primary"
-          onClick={() => dispatch(deleteActivity(activity._id))}
+          onClick={() => dispatch(deleteActivity(activity.id))}
         >
           <DeleteIcon fontSize="small" />
           Hapus

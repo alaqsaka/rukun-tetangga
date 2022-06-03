@@ -8,6 +8,12 @@ const Activities = ({ setCurrentId }) => {
   const activities = useSelector((state) => state.activities);
   const classes = useStyles();
   console.log(activities);
+  console.log('activities abis post', activities);
+
+  // useEffect(() => {
+  //   console.log('re render');
+  // }, [activities]);
+
   // console.log(JSON.parse(activities[0].selectedFile));
   return (
     // Jika engga ada value di dalam array activities maka tampilkan circularprogress
@@ -22,7 +28,7 @@ const Activities = ({ setCurrentId }) => {
           spacing={3}
         >
           {activities.map((activity) => (
-            <Grid item key={activity._id} xs={12} sm={6}>
+            <Grid item key={activity.id} xs={12} sm={6}>
               <Activity activity={activity} setCurrentId={setCurrentId} />
             </Grid>
           ))}

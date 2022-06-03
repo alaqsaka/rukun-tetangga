@@ -21,7 +21,7 @@ export default (activities = [], action) => {
     case GET_COMMENTS:
       return action.payload;
     case DELETE:
-      return activities.filter((activity) => activity._id !== action.payload);
+      return activities.filter((activity) => activity.id !== action.payload);
     default:
       return activities;
   }

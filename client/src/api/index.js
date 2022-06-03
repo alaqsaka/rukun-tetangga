@@ -14,7 +14,7 @@ export const updateActivity = (id, updatedActivity) =>
 
 // fungsi untuk menghapus kegiatan, ngirim id kegiatan sebagai params
 // manggil api dari /activities/:id -> ada di routes folder server
-export const deleteActivity = (id) => API.delete(`/activities/${id}`);
+export const deleteActivity = (id) => API.delete(`/posts/${id}`);
 export const fetchPost = (id) => API.get(`/posts/${id}`);
 // fungsi untuk like kegiatan, ngirim id kegiatan sebagai params
 // manggil api dari /activities/:id -> ada di routes folder server

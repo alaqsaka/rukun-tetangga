@@ -26,7 +26,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
   // mendapatkan data untuk kegiatan yang sedang diupdate, supaya data tersebut dapat ditampilkan pada form
   const activity = useSelector((state) =>
-    currentId ? state.activities.find((a) => a._id === currentId) : null
+    currentId ? state.activities.find((a) => a.id === currentId) : null
   );
 
   const classes = useStyles();
