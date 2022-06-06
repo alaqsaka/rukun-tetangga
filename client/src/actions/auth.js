@@ -21,7 +21,7 @@ export const signup = (formData, history) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
 
-    history.push('/lengkapi-data');
+    history.push('/');
   } catch (error) {
     console.log(error);
   }
