@@ -101,7 +101,12 @@ const Activity = ({ activity, setCurrentId }) => {
       </CardContent>
 
       <div style={{ padding: '10px' }}>
-        <Button color="primary" variant="contained" fullWidth>
+        <Button
+          color="primary"
+          variant="contained"
+          fullWidth
+          style={{ borderRadius: '13px', background: '#0094FF' }}
+        >
           {/* logic untuk nambahin hadir count && nambahin profile picture warga / nama warga */}
           {/* kalau udah pencet tombol hadir, tulisannya berubah jadi Saya Akan Hadir */}
           Hadir

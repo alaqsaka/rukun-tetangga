@@ -82,7 +82,7 @@ const Welcome = () => {
                     spacing={3}
                   >
                     {activities.map((activity) => (
-                      <Grid item key={activity.id} xs={12} sm={3}>
+                      <Grid item key={activity.id} xs={12} lg={3} sm={6} md={6}>
                         <Activity activity={activity} />
                       </Grid>
                     ))}

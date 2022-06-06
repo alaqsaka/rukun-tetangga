@@ -6,8 +6,8 @@ export default makeStyles({
     paddingTop: '56.25%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
-    borderRadius: '10px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    borderRadius: '0px 12px 0px 0px'
   },
   border: {
     border: 'solid'
@@ -19,9 +19,10 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    borderRadius: '15px',
+    borderRadius: '13px !important',
     height: '100%',
-    position: 'relative'
+    position: 'relative',
+    filter: 'drop-shadow(0px 5px 50px rgba(0, 0, 0, 0.10))'
   },
   overlay: {
     position: 'absolute',
