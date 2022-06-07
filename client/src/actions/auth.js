@@ -41,7 +41,9 @@ export const lengkapi_data_ketua = (formData, history) => async (dispatch) => {
     const { data } = await api.lengkapi_data_ketua(formData);
     let localStorageData = JSON.parse(localStorage.getItem('profile'));
     console.log(localStorageData.result);
-    localStorageData = { ...localStorageData, formData };
+
+    console.log(localStorageData);
+    localStorageData.result = { ...localStorageData.result, ...formData };
     console.log(localStorageData);
     localStorage.setItem('profile', JSON.stringify(localStorageData));
     dispatch({ type: LENGKAPI_DATA_KETUA, data });

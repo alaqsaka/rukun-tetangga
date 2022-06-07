@@ -61,7 +61,8 @@ const Header = (props) => {
       route: 'About',
       url: '/about'
     },
-    { id: 2, route: 'Kegiatan', url: '/kegiatan' }
+    { id: 2, route: 'Kegiatan', url: '/kegiatan' },
+    { id: 3, route: 'Warga', url: '/data-warga' }
   ];
 
   const [state, setState] = React.useState({
