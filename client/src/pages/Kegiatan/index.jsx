@@ -18,25 +18,29 @@ const Kegiatan = () => {
 
   return (
     <Grow in>
-      <div>
-        <Typography variant="h4">Kegiatan</Typography>
-        <Grid
-          container
-          justifyContent="space-between"
-          alignItems="stretch"
-          spacing={2}
-          className={classes.mainContainer}
-        >
-          <Grid item xs={12} sm={12} md={8}>
-            <Activities setCurrentId={setCurrentId} />
-          </Grid>
-          {user.result.role === 'ketua' && (
-            <Grid item xs={12} sm={12} md={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
+      {user ? (
+        <div>
+          <Typography variant="h4">Kegiatan</Typography>
+          <Grid
+            container
+            justifyContent="space-between"
+            alignItems="stretch"
+            spacing={2}
+            className={classes.mainContainer}
+          >
+            <Grid item xs={12} sm={12} md={8}>
+              <Activities setCurrentId={setCurrentId} />
             </Grid>
-          )}
-        </Grid>
-      </div>
+            {user.result.role === 'ketua' && (
+              <Grid item xs={12} sm={12} md={4}>
+                <Form currentId={currentId} setCurrentId={setCurrentId} />
+              </Grid>
+            )}
+          </Grid>
+        </div>
+      ) : (
+        <div>Login terlebih dahulu untuk mengakses halaman ini </div>
+      )}
     </Grow>
   );
 };
