@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { Grow, Grid, Typography } from '@mui/material';
 import { Activities, Form } from '../../components/organisms';
@@ -9,6 +10,7 @@ const Kegiatan = () => {
   const dispatch = useDispatch();
   const [currentId, setCurrentId] = useState(null);
   const classes = useStyles();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
   useEffect(() => {
     dispatch(getActivities());
@@ -28,9 +30,11 @@ const Kegiatan = () => {
           <Grid item xs={12} sm={12} md={8}>
             <Activities setCurrentId={setCurrentId} />
           </Grid>
-          <Grid item xs={12} sm={12} md={4}>
-            <Form currentId={currentId} setCurrentId={setCurrentId} />
-          </Grid>
+          {user.result.role === 'ketua' && (
+            <Grid item xs={12} sm={12} md={4}>
+              <Form currentId={currentId} setCurrentId={setCurrentId} />
+            </Grid>
+          )}
         </Grid>
       </div>
     </Grow>

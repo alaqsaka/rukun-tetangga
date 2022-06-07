@@ -70,7 +70,7 @@ const Welcome = () => {
               Kegiatan RT 02 Alam Asri 1
             </Typography>
 
-            <Grid container>
+            <Grid container spacing={2}>
               <Grid item xs={12} md={12}>
                 {!activities.length ? (
                   <CircularProgress />

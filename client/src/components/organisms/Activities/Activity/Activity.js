@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   CardActions,
@@ -24,9 +24,9 @@ const Activity = ({ activity, setCurrentId }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   console.log('activity abis post', activity);
-
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const openPost = () => history.push(`/kegiatan/${activity.id}`);
-
+  console.log(user);
   //let image = JSON.parse(activity.selectedFile[0]);
 
   // fungsi untuk mengubah waktu (harinya) dari bahasa inggris ke bahasa indo
@@ -47,13 +47,16 @@ const Activity = ({ activity, setCurrentId }) => {
       </div>
       <div className={classes.overlay2}>
         {/* Button untuk update kegiatan */}
-        <Button
-          style={{ color: 'white' }}
-          size="small"
-          onClick={() => setCurrentId(activity.id)}
-        >
-          <MoreHorizIcon fontSize="medium" />
-        </Button>
+        {/* Wont show edit button if logged in as warga */}
+        {user.result.role === 'ketua' && (
+          <Button
+            style={{ color: 'white' }}
+            size="small"
+            onClick={() => setCurrentId(activity.id)}
+          >
+            <MoreHorizIcon fontSize="medium" />
+          </Button>
+        )}
       </div>
       <div className={classes.details}>
         <Typography variant="h5" gutterBottom>
@@ -72,14 +75,17 @@ const Activity = ({ activity, setCurrentId }) => {
           <ThumbUpAltIcon fontSize="small" />
           &nbsp; Suka &nbsp; {activity.likeCount}
         </Button>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => dispatch(deleteActivity(activity.id))}
-        >
-          <DeleteIcon fontSize="small" />
-          Hapus
-        </Button>
+        {/* Wont show delete button if logged in as warga */}
+        {user.result.role == 'ketua' && (
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => dispatch(deleteActivity(activity.id))}
+          >
+            <DeleteIcon fontSize="small" />
+            Hapus
+          </Button>
+        )}
       </CardActions>
       <CardContent>
         <Typography variant="body2" gutterBottom>
