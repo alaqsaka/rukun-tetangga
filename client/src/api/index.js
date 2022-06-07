@@ -21,5 +21,7 @@ export const fetchPost = (id) => API.get(`/posts/${id}`);
 export const likeActivity = (id) => API.patch(`/activities/${id}/likeActivity`);
 export const signIn = (formData) => API.post(`/auth/login`, formData);
 export const signUp = (formData) => API.post(`/auth`, formData);
-export const lengkapi_data_ketua = (formData, id) =>
-  API.patch(`/user/lengkapi-data-ketua/${id}`, formData);
+export const lengkapi_data_ketua = (formData) =>
+  API.post(`/lengkapi-data`, formData);
+export const lengkapi_data_warga = (formData) =>
+  API.post(`/lengkapi-data/warga`, formData);

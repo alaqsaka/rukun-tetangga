@@ -22,7 +22,7 @@ import * as Yup from 'yup';
 import Input from './Input';
 import { Formik, Form } from 'formik';
 import Button from './Button';
-import { lengkapi_data_ketua } from '../../actions/auth';
+import { lengkapi_data_ketua, lengkapi_data_warga } from '../../actions/auth';
 
 const LengkapiData = () => {
   const classes = useStyles();
@@ -31,11 +31,7 @@ const LengkapiData = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
 
-  if (
-    user.result.community_address != '' &&
-    user.result.community_id != '' &&
-    user.result.community_nama != ''
-  ) {
+  if (user.result.community_id != '') {
     history.push('/');
   }
 
@@ -48,11 +44,13 @@ const LengkapiData = () => {
   const INITIAL_FORM_STATE_KETUA = {
     community_address: '',
     community_id: makeid(4),
-    community_nama: ''
+    community_name: '',
+    KetuaId: user.result.id
   };
 
   const INITIAL_FORM_STATE_WARGA = {
-    community_id: ''
+    community_id: '',
+    id: user.result.id
   };
 
   const [formData, setFormData] = useState(INITIAL_FORM_STATE_KETUA);
@@ -60,7 +58,7 @@ const LengkapiData = () => {
   const FORM_VALIDATION_KETUA = Yup.object().shape({
     community_address: Yup.string().required('Alamat RT-mu tidak boleh kosong'),
     community_id: Yup.string().required('Auto generate ID'),
-    community_nama: Yup.string().required('Sebutan untuk RT-mu')
+    community_name: Yup.string().required('Sebutan untuk RT-mu')
   });
 
   const FORM_VALIDATION_WARGA = Yup.object().shape({
@@ -76,13 +74,16 @@ const LengkapiData = () => {
     console.log(formData);
     console.log(values);
     //formData.community_id = makeid(4);
-    dispatch(lengkapi_data_ketua(values, user.result._id, history));
+    dispatch(lengkapi_data_ketua(values, history));
     console.log('dispatch');
     //dispatch(signup(values, history));
   };
 
   const handleSubmitWarga = (values) => {
     //dispatch(signin(values, history));
+    console.log('Warga submit');
+    console.log(values);
+    dispatch(lengkapi_data_warga(values, history));
   };
 
   const handleReset = () => {
@@ -127,8 +128,6 @@ const LengkapiData = () => {
           //   }
           validator={() => ({})}
           onSubmit={(values) => {
-            console.log('submit');
-            handleSubmit(values);
             // if (user.result.role === 'ketua') {
             //   // signup
             //   console.log(values);
@@ -140,6 +139,12 @@ const LengkapiData = () => {
             //   // dispatch(signin(values, history));
             //   handleSubmitWarga(values);
             // }
+            if (user.result.role === 'ketua') {
+              console.log('submit');
+              handleSubmit(values);
+            } else {
+              handleSubmitWarga(values);
+            }
           }}
           onReset={handleReset}
         >
@@ -153,7 +158,7 @@ const LengkapiData = () => {
                     handleChange={handleChange}
                   />
                   <Input
-                    name="community_nama"
+                    name="community_name"
                     label="Sebutan nama RT-mu"
                     handleChange={handleChange}
                   />
