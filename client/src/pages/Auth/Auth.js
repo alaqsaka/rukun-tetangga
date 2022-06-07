@@ -33,6 +33,12 @@ const Auth = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const history = useHistory();
 
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+  if (user) {
+    history.push('/');
+  }
+
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
