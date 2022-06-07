@@ -13,6 +13,8 @@ const KegiatanDetails = () => {
   const classes = useStyles();
   const [postObject, setPostObject] = useState({});
   const dispatch = useDispatch();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  console.log(user);
   //const comments = useSelector((state) => state.activities);
   let [comments, setComments] = useState([]);
   comments = useSelector((state) => state.activities);
@@ -29,12 +31,20 @@ const KegiatanDetails = () => {
   const [newComment, setnewComment] = useState('');
   const addComment = () => {
     axios
-      .post('http://localhost:3001/comments', {
-        commentBody: newComment,
-        PostId: id,
-        namaDepan: 'Warga',
-        namaBelakang: 'Warga'
-      })
+      .post(
+        'http://localhost:3001/comments',
+        {
+          commentBody: newComment,
+          PostId: id,
+          namaDepan: 'Warga',
+          namaBelakang: 'Warga'
+        },
+        {
+          headers: {
+            accessToken: user.accessToken
+          }
+        }
+      )
       .then((response) => {
         console.log('Comment added');
         let commentToAdd = {
