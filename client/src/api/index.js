@@ -25,3 +25,6 @@ export const lengkapi_data_ketua = (formData) =>
   API.post(`/lengkapi-data`, formData);
 export const lengkapi_data_warga = (formData) =>
   API.post(`/lengkapi-data/warga`, formData);
+
+export const getDataWarga = (community_id) =>
+  API.get(`/auth/data-warga/${community_id}`);

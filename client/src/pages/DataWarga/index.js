@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Typography,
   Table,
@@ -10,12 +11,26 @@ import {
   Avatar
 } from '@mui/material';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { get_data_warga } from '../../actions/auth';
+import moment from 'moment';
 
 const DataWarga = () => {
+  const dispatch = useDispatch();
   function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
   }
+  const dataWarga = useSelector((state) => state.dataWargaReducer);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+  console.log(user);
+  useEffect(() => {
+    // setUser(JSON.parse(localStorage.getItem('profile')));
+    dispatch(get_data_warga(user.result.community_id));
+  }, []);
+
+  console.log('data warga dari page ', dataWarga);
   const rows = [
     createData(
       'Al Aqsa Krisnaya Abidin',
@@ -65,48 +80,57 @@ const DataWarga = () => {
       </Typography>
 
       {/* Tabel warga */}
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Nama Lengkap</TableCell>
-              <TableCell align="right">Nomor Telepon</TableCell>
-              <TableCell align="right">Alamat Rumah</TableCell>
-              <TableCell align="right">Jenis Kelamin</TableCell>
-              <TableCell align="right">Akun dibuat pada</TableCell>
-              <TableCell align="right">Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignContent: 'center',
-                      alignItems: 'center',
-                      gap: '5px'
-                    }}
-                  >
-                    <Avatar sx={{ width: 36, height: 36 }}>
-                      {row.name.charAt(0)}
-                    </Avatar>
-                    <Typography variant="body2">{row.name}</Typography>
-                  </div>
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+      {dataWarga.length == 0 ? (
+        <div>masih loading</div>
+      ) : (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Nama Lengkap</TableCell>
+                <TableCell align="right">Nomor Telepon</TableCell>
+                <TableCell align="right">Alamat Rumah</TableCell>
+                <TableCell align="right">Jenis Kelamin</TableCell>
+                <TableCell align="right">Akun dibuat pada</TableCell>
+                <TableCell align="right">Actions</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+
+            <TableBody>
+              {dataWarga.data.map((warga) => (
+                <TableRow
+                  key={warga.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        gap: '5px'
+                      }}
+                    >
+                      <Avatar sx={{ width: 36, height: 36 }}>
+                        {warga.namaDepan.charAt(0)}
+                      </Avatar>
+                      <Typography variant="body2">{warga.namaDepan}</Typography>
+                    </div>
+                  </TableCell>
+                  <TableCell align="right">{warga.phone}</TableCell>
+                  <TableCell align="right">{warga.alamat}</TableCell>
+                  <TableCell align="right">{warga.jenisKelamin}</TableCell>
+                  <TableCell align="right">
+                    {moment(warga.createdAt).format(
+                      'dddd, MMMM Do YYYY, h:mm:ss a'
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
     </div>
   );
 };

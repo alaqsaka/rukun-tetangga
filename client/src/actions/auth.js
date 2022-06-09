@@ -2,6 +2,7 @@
 import * as api from '../api';
 import {
   AUTH,
+  GET_DATA_WARGA,
   LENGKAPI_DATA_KETUA,
   LENGKAPI_DATA_WARGA
 } from '../constants/actionTypes';
@@ -68,6 +69,17 @@ export const lengkapi_data_warga = (formData, history) => async (dispatch) => {
     dispatch({ type: LENGKAPI_DATA_WARGA, data });
     history.push('/');
     console.log('action kelar');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const get_data_warga = (community_id) => async (dispatch) => {
+  console.log(community_id);
+  try {
+    const { data } = await api.getDataWarga(community_id);
+    console.log('get_data_warga ', data);
+    dispatch({ type: GET_DATA_WARGA, data });
   } catch (error) {
     console.log(error);
   }
