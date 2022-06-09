@@ -92,7 +92,6 @@ const DataWarga = () => {
                 <TableCell align="right">Alamat Rumah</TableCell>
                 <TableCell align="right">Jenis Kelamin</TableCell>
                 <TableCell align="right">Akun dibuat pada</TableCell>
-                <TableCell align="right">Actions</TableCell>
               </TableRow>
             </TableHead>
 
