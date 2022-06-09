@@ -114,7 +114,9 @@ const DataWarga = () => {
                       <Avatar sx={{ width: 36, height: 36 }}>
                         {warga.namaDepan.charAt(0)}
                       </Avatar>
-                      <Typography variant="body2">{warga.namaDepan}</Typography>
+                      <Typography variant="body2">
+                        {warga.namaDepan} {warga.namaBelakang}
+                      </Typography>
                     </div>
                   </TableCell>
                   <TableCell align="right">{warga.phone}</TableCell>
