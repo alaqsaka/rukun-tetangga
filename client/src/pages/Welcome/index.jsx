@@ -7,7 +7,7 @@ import { Typography, Grid, CircularProgress } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { getActivities } from '../../actions/activities';
 import Activity from '../../components/organisms/Activities/Activity/Activity';
-import contoh_foto from '../../assets/images/cover-foto.jpg';
+import contoh_foto from '../../assets/images/banner-foto.jpg';
 // services
 
 import './styles.scss';
