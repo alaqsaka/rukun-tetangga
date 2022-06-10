@@ -24,6 +24,10 @@ const DataWarga = () => {
   const dataWarga = useSelector((state) => state.dataWargaReducer);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
+  if (!user) {
+    return <div>Login terlebih dahulu untuk mengakses halaman ini</div>;
+  }
+
   console.log(user);
   useEffect(() => {
     // setUser(JSON.parse(localStorage.getItem('profile')));
