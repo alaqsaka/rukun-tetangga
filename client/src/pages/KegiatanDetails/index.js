@@ -15,6 +15,11 @@ const KegiatanDetails = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   console.log(user);
+
+  if (!user) {
+    return <div>Login terlebih dahulu untuk mengakses halaman ini</div>;
+  }
+
   //const comments = useSelector((state) => state.activities);
   let [comments, setComments] = useState([]);
   comments = useSelector((state) => state.activities);
