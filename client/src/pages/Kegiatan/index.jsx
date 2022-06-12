@@ -16,8 +16,10 @@ const Kegiatan = () => {
 
   return (
     <Grow in>
-      <div style={{ marginTop: '100px' }}>
-        <Typography variant="h4">Kegiatan</Typography>
+      <div style={{ marginTop: '20px' }}>
+        <Typography variant="h4" style={{ marginBottom: '10px' }}>
+          Kegiatan
+        </Typography>
         <Grid
           container
           justifyContent="space-between"

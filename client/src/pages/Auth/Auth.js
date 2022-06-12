@@ -29,8 +29,8 @@ import { useHistory } from 'react-router-dom';
 
 const Auth = () => {
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(true);
   const history = useHistory();
 
   const handleShowPassword = () =>

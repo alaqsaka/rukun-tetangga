@@ -12,19 +12,20 @@ const Section = () => {
     {
       id: 1,
       icon: <EngineeringOutlinedIcon sx={{ fontSize: 100 }} color="primary" />,
-      sentence:
-        'Solving world problems through various web applications using efficient programs and tools'
+      sentence: 'Pengurus',
+      desc: 'Daftar pengurus RT serta tugas dan jabatannya'
     },
     {
       id: 2,
       icon: <AllInclusiveIcon sx={{ fontSize: 100 }} color="primary" />,
-      sentence:
-        'Through team work, we collaborate and deliver quality projects of high standards'
+      sentence: 'Agenda',
+      desc: 'Berisi jadwal kegiatan yang akan diselenggarakan'
     },
     {
       id: 3,
       icon: <PaidOutlinedIcon sx={{ fontSize: 100 }} color="primary" />,
-      sentence: 'Flexible payment plan is applicable to all our services'
+      sentence: 'Keuangan RT',
+      desc: 'Berisi Laporan Keuangan RT, Iuran Warga, serta Koperasi'
     }
   ];
   return (
@@ -41,6 +42,7 @@ const Section = () => {
           >
             {item.icon}
             <Typography>{item.sentence}</Typography>
+            <Typography>{item.desc}</Typography>
           </Grid>
         ))}
       </Grid>

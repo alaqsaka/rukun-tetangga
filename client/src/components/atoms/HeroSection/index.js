@@ -16,16 +16,14 @@ const Hero = () => {
             className={classes.title}
             style={{ fontFamily: 'Poppins' }}
           >
-            Lets scale your business
+            Rukun Tetangga
           </Typography>
           <Typography
             variant="h6"
             className={classes.subtitle}
             style={{ fontFamily: 'Poppins' }}
           >
-            Hire professionals who will help your business make 10X your
-            previous income. With over 5years experience in Marketing & Business
-            strategy, we are your best client.
+            Website untuk keperluan administrasi masyarakat tingkat RT
           </Typography>
           <Button
             variant="contained"
@@ -33,7 +31,7 @@ const Hero = () => {
             sx={{ width: '200px', fontSize: '16px' }}
             style={{ fontFamily: 'Poppins' }}
           >
-            HIRE US
+            Hire Us
           </Button>
         </Grid>
         <Grid item xs={12} md={5}>

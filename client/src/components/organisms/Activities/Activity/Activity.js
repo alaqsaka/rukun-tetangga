@@ -55,24 +55,6 @@ const Activity = ({ activity, setCurrentId }) => {
           Deskripsi: {activity.deskripsiKegiatan}
         </Typography>
       </div>
-      <CardActions className={classes.cardActions}>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => dispatch(likeActivity(activity._id))}
-        >
-          <ThumbUpAltIcon fontSize="small" />
-          &nbsp; Suka &nbsp; {activity.likeCount}
-        </Button>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => dispatch(deleteActivity(activity._id))}
-        >
-          <DeleteIcon fontSize="small" />
-          Hapus
-        </Button>
-      </CardActions>
       <CardContent>
         <Typography variant="body2" gutterBottom>
           📅 {moment(activity.tanggalKegiatan).format('dddd, LL')}
@@ -91,7 +73,24 @@ const Activity = ({ activity, setCurrentId }) => {
           {activity.hadirCount}
         </Typography>
       </CardContent>
-
+      <CardActions className={classes.cardActions}>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => dispatch(likeActivity(activity._id))}
+        >
+          <ThumbUpAltIcon fontSize="small" />
+          &nbsp; Suka &nbsp; {activity.likeCount}
+        </Button>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => dispatch(deleteActivity(activity._id))}
+        >
+          <DeleteIcon fontSize="small" />
+          Hapus
+        </Button>
+      </CardActions>
       <div style={{ padding: '10px' }}>
         <Button color="primary" variant="contained" fullWidth>
           {/* logic untuk nambahin hadir count && nambahin profile picture warga / nama warga */}
