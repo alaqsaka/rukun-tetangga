@@ -35,6 +35,11 @@ const AppRoutes = [
     path: '/data-warga',
     component: lazy(() => import('../pages/DataWarga')),
     exact: true
+  },
+  {
+    path: '/landing-page-cms',
+    component: lazy(() => import('../pages/LandingPageCMS')),
+    exact: true
   }
 ];
 

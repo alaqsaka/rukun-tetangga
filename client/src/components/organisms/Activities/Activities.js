@@ -25,7 +25,11 @@ const Activities = ({ setCurrentId }) => {
         >
           {activities.map((activity) => (
             <Grid item key={activity.id} xs={12} sm={6}>
-              <Activity activity={activity} setCurrentId={setCurrentId} />
+              <Activity
+                activity={activity}
+                activities={activities}
+                setCurrentId={setCurrentId}
+              />
             </Grid>
           ))}
         </Grid>

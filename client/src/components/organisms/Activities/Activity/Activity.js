@@ -14,19 +14,63 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import useStyles from './styles';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteActivity, likeActivity } from '../../../../actions/activities';
 import contoh_foto from '../../../../assets/images/group_of_friends.jpg';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-const Activity = ({ activity, setCurrentId }) => {
+const Activity = ({ activity, setCurrentId, activities }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log('activity abis post', activity);
+  // console.log('activity abis post', activity);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const openPost = () => history.push(`/kegiatan/${activity.id}`);
-  console.log(user);
+  console.log('user ', user.accessToken);
+
+  console.log('activities activity.js', activities);
+
+  const [newActivities, setnewActivities] = useState([]);
+
+  const likeAPost = (postId) => {
+    axios
+      .post(
+        'http://localhost:3001/likes',
+        { PostId: postId },
+        {
+          headers: {
+            accessToken: user.accessToken
+          }
+        }
+      )
+      .then((response) => {
+        // alert(response.data.liked);
+        // console.log('activities act.js', activities);
+        setnewActivities(
+          activities.map((post) => {
+            console.log(post);
+            if (post.id === postId) {
+              if (response.data.liked) {
+                console.log('here');
+                return { ...post, Likes: [...post.Likes, 0] };
+              } else {
+                const likesArray = post.Likes;
+                likesArray.pop();
+                console.log('here2');
+                return { ...post, Likes: likesArray };
+              }
+            } else {
+              console.log('here3');
+              return post;
+            }
+          })
+        );
+      });
+
+    console.log('new activities', newActivities);
+  };
+
   //let image = JSON.parse(activity.selectedFile[0]);
 
   // fungsi untuk mengubah waktu (harinya) dari bahasa inggris ke bahasa indo
@@ -70,10 +114,10 @@ const Activity = ({ activity, setCurrentId }) => {
         <Button
           size="small"
           color="primary"
-          onClick={() => dispatch(likeActivity(activity.id))}
+          onClick={() => likeAPost(activity.id)}
         >
           <ThumbUpAltIcon fontSize="small" />
-          &nbsp; Suka &nbsp; {activity.likeCount}
+          &nbsp; Suka &nbsp; {activity.Likes.length}
         </Button>
         {/* Wont show delete button if logged in as warga */}
         {user.result.role == 'ketua' && (

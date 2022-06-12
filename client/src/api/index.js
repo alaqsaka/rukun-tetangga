@@ -18,7 +18,8 @@ export const deleteActivity = (id) => API.delete(`/posts/${id}`);
 export const fetchPost = (id) => API.get(`/posts/${id}`);
 // fungsi untuk like kegiatan, ngirim id kegiatan sebagai params
 // manggil api dari /activities/:id -> ada di routes folder server
-export const likeActivity = (id) => API.patch(`/activities/${id}/likeActivity`);
+export const likeActivity = (id, accessToken) =>
+  API.post(`/likes`, { PostId: id }, { headers: { accessToken: accessToken } });
 export const signIn = (formData) => API.post(`/auth/login`, formData);
 export const signUp = (formData) => API.post(`/auth`, formData);
 export const lengkapi_data_ketua = (formData) =>

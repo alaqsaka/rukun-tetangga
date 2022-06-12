@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as api from '../api';
 import {
   FETCH_ALL,
@@ -52,7 +53,13 @@ export const deleteActivity = (id) => async (dispatch) => {
 
 export const likeActivity = (id) => async (dispatch) => {
   try {
-    const { data } = await api.likeActivity(id);
+    let accessToken = JSON.parse(localStorage.getItem('profile'));
+    accessToken = accessToken.accessToken;
+
+    const data = await api.likeActivity(id, accessToken).then((response) => {
+      alert(response.data);
+      console.log(response);
+    });
 
     dispatch({ type: UPDATE, payload: data });
   } catch (error) {

@@ -62,7 +62,8 @@ const Header = (props) => {
       url: '/about'
     },
     { id: 2, route: 'Kegiatan', url: '/kegiatan' },
-    { id: 3, route: 'Warga', url: '/data-warga' }
+    { id: 3, route: 'Warga', url: '/data-warga' },
+    { id: 4, route: 'Landing Page CMS', url: '/landing-page-cms' }
   ];
 
   const [state, setState] = React.useState({
@@ -119,6 +120,10 @@ const Header = (props) => {
 
   // const user = false;
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+  if (user && !user.result.role === 'ketua') {
+    links.pop();
+  }
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' });
