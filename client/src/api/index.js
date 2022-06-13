@@ -29,3 +29,6 @@ export const lengkapi_data_warga = (formData) =>
 
 export const getDataWarga = (community_id) =>
   API.get(`/auth/data-warga/${community_id}`);
+
+export const getCommunityDetails = (community_id) =>
+  API.get(`/community/${community_id}`);

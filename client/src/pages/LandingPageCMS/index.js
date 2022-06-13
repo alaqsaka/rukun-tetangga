@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Typography,
   Alert,
@@ -10,6 +10,7 @@ import {
   Button,
   TextField
 } from '@mui/material';
+import axios from 'axios';
 import Input from '../../components/atoms/Input/Input';
 import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import FileBase from 'react-file-base64';
@@ -36,15 +37,28 @@ const LandingPageCMS = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const classes = useStyles();
-
+  const [communityDetails, setCommunityDetails] = useState({});
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+  useEffect(() => {
+    //const token = user?.token;
+    setUser(JSON.parse(localStorage.getItem('profile')));
+
+    if (user) {
+      axios
+        .get(`http://localhost:3001/community/${user.result.community_id}`)
+        .then((response) => {
+          setCommunityDetails(response.data.data);
+        });
+    }
+  }, []);
 
   if (!user) {
     return <div>Login terlebih dahulu untuk mengakses halaman ini </div>;
   }
 
   const INITIAL_FORM_STATE = {
-    community_name: '',
+    community_name: communityDetails.community_name,
     community_address: '',
     community_banner: ''
   };
@@ -68,9 +82,10 @@ const LandingPageCMS = () => {
     // console.log(formData);
   };
 
+  console.log('ini community ', communityDetails);
   const formik = useFormik({
     initialValues: {
-      community_name: '',
+      community_name: communityDetails.community_name,
       community_address: '',
       community_banner: ''
     },
@@ -103,124 +118,136 @@ const LandingPageCMS = () => {
             untuk menyunting konten-konten yang ada pada landing page
           </Typography>
 
-          <form onSubmit={formik.handleSubmit}>
-            <Typography variant="h6" style={{ marginTop: '10px' }}>
-              Nama RT / RW
-            </Typography>
-            <Typography variant="body1" style={{ marginBottom: '10px' }}>
-              Contoh pengisian: RT 1 Parangtritis
-            </Typography>
-            <TextField
-              id="community_name"
-              name="community_name"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.community_name}
-              fullWidth
-              label="Isi ini dengan nama singkat RT atau RW"
-            />
-            <Typography variant="h6" style={{ marginTop: '10px' }}>
-              Alamat Lengkap RT/RW Anda
-            </Typography>
-            <Typography variant="body1" style={{ marginBottom: '10px' }}>
-              Contoh pengisian: RT 1 Parangtritis, Vila Dago Tol, Tangerang
-              Selatan, Banten, Indonesia
-            </Typography>
-            <TextField
-              id="community_address"
-              name="community_address"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.community_address}
-              fullWidth
-              label="Isi ini dengan alamat lengkapmu ya"
-            />
-            <Typography variant="h6" style={{ marginTop: '10px' }}>
-              Banner foto komunitas anda
-            </Typography>
-            <Typography variant="body1" style={{ marginBottom: '10px' }}>
-              Upload gambar yang meliputi RT / RW anda yaa
-            </Typography>
-            <FileBase type="file" multiple={false} />
-            <Grid
-              container
-              alignContent="center"
-              spacing={2}
-              style={{ marginTop: '20px' }}
-            >
-              <Grid item xs={2}>
-                <Button variant="contained" type="submit" fullWidth>
-                  Update data
-                </Button>
-              </Grid>
-              <Grid item xs={2}>
-                <Button variant="outlined" onClick={handleOpen}>
-                  Preview landing page
-                </Button>
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style}>
-                    <div
-                      style={{
-                        justifyContent: 'space-between',
-                        display: 'flex'
-                      }}
-                    >
-                      <Typography variant="h5" style={{ color: '#9D9D9D' }}>
-                        Selamat datang,{' '}
-                        {user.result.jenisKelamin == 'pria' ? 'Pak' : 'Bu'}{' '}
-                        {user.result.namaDepan} {user.result.namaBelakang}
-                      </Typography>
-                      <div className={classes.time}>
-                        <CalendarMonthIcon
-                          fontSize="20px"
-                          style={{ fontSize: '20px' }}
-                        />
-                        <Typography variant="body1">
-                          Selasa, 7 Juni 2022
+          {communityDetails && (
+            <form onSubmit={formik.handleSubmit}>
+              <Typography variant="h6" style={{ marginTop: '10px' }}>
+                Nama RT / RW
+              </Typography>
+              <Typography variant="body1" style={{ marginBottom: '10px' }}>
+                Contoh pengisian: RT 1 Parangtritis
+              </Typography>
+              <TextField
+                id="community_name"
+                name="community_name"
+                type="text"
+                onChange={formik.handleChange}
+                fullWidth
+                label={
+                  formik.values.community_name
+                    ? ''
+                    : communityDetails.community_name
+                }
+                value={formik.values.community_name}
+              />
+              <Typography variant="h6" style={{ marginTop: '10px' }}>
+                Alamat Lengkap RT/RW Anda
+              </Typography>
+              <Typography variant="body1" style={{ marginBottom: '10px' }}>
+                Contoh pengisian: RT 1 Parangtritis, Vila Dago Tol, Tangerang
+                Selatan, Banten, Indonesia
+              </Typography>
+              <TextField
+                id="community_address"
+                name="community_address"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.community_address}
+                fullWidth
+                label={
+                  formik.values.community_address
+                    ? ''
+                    : communityDetails.community_address
+                }
+              />
+              <Typography variant="h6" style={{ marginTop: '10px' }}>
+                Banner foto komunitas anda
+              </Typography>
+              <Typography variant="body1" style={{ marginBottom: '10px' }}>
+                Upload gambar yang meliputi RT / RW anda yaa
+              </Typography>
+              <FileBase type="file" multiple={false} />
+              <Grid
+                container
+                alignContent="center"
+                spacing={2}
+                style={{ marginTop: '20px' }}
+              >
+                <Grid item xs={2}>
+                  <Button variant="contained" type="submit" fullWidth>
+                    Update data
+                  </Button>
+                </Grid>
+                <Grid item xs={2}>
+                  <Button variant="outlined" onClick={handleOpen}>
+                    Preview landing page
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <div
+                        style={{
+                          justifyContent: 'space-between',
+                          display: 'flex'
+                        }}
+                      >
+                        <Typography variant="h5" style={{ color: '#9D9D9D' }}>
+                          Selamat datang,{' '}
+                          {user.result.jenisKelamin == 'pria' ? 'Pak' : 'Bu'}{' '}
+                          {user.result.namaDepan} {user.result.namaBelakang}
                         </Typography>
+                        <div className={classes.time}>
+                          <CalendarMonthIcon
+                            fontSize="20px"
+                            style={{ fontSize: '20px' }}
+                          />
+                          <Typography variant="body1">
+                            Selasa, 7 Juni 2022
+                          </Typography>
+                        </div>
                       </div>
-                    </div>
-                    <Typography
-                      variant="h6"
-                      style={{
-                        marginBottom: '14px',
-                        textAlign: 'center',
-                        fontSize: '32px'
-                      }}
-                    >
-                      {formik.values.community_name}
-                    </Typography>
-                    <div
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        borderRadius: '13px'
-                      }}
-                    >
-                      <img
-                        src={contoh_foto}
-                        alt=""
+                      <Typography
+                        variant="h6"
+                        style={{
+                          marginBottom: '14px',
+                          textAlign: 'center',
+                          fontSize: '32px'
+                        }}
+                      >
+                        {formik.values.community_name
+                          ? formik.values.community_name
+                          : communityDetails.community_name}
+                      </Typography>
+                      <div
                         style={{
                           width: '100%',
-                          // backgroundSize: 'contain',
-                          maxHeight: '477px',
-                          borderRadius: '13px',
-                          objectFit: 'cover',
-                          backgroundAttachment: 'fixed',
-                          backgroundPosition: 'center center'
+                          height: '100%',
+                          borderRadius: '13px'
                         }}
-                      />
-                    </div>
-                  </Box>
-                </Modal>
+                      >
+                        <img
+                          src={contoh_foto}
+                          alt=""
+                          style={{
+                            width: '100%',
+                            // backgroundSize: 'contain',
+                            maxHeight: '477px',
+                            borderRadius: '13px',
+                            objectFit: 'cover',
+                            backgroundAttachment: 'fixed',
+                            backgroundPosition: 'center center'
+                          }}
+                        />
+                      </div>
+                    </Box>
+                  </Modal>
+                </Grid>
               </Grid>
-            </Grid>
-          </form>
+            </form>
+          )}
 
           {/* <Formik
             initialValues={{

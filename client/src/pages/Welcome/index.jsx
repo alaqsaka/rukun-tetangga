@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Hero, Section, ContactUs, AboutSection } from '../../components/atoms';
 import useStyles from './styles';
+import axios from 'axios';
 import { Typography, Grid, CircularProgress } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { getActivities } from '../../actions/activities';
@@ -19,10 +20,22 @@ const Welcome = () => {
   const location = useLocation();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
+
+  const [communityDetails, setCommunityDetails] = useState({});
+
   useEffect(() => {
     //const token = user?.token;
     setUser(JSON.parse(localStorage.getItem('profile')));
     dispatch(getActivities());
+
+    if (user) {
+      axios
+        .get(`http://localhost:3001/community/${user.result.community_id}`)
+        .then((response) => {
+          setCommunityDetails(response.data.data);
+          console.log(communityDetails);
+        });
+    }
   }, [location]);
 
   const activities = useSelector((state) => state.activities);
@@ -72,7 +85,7 @@ const Welcome = () => {
               fontSize: '32px'
             }}
           >
-            RT 02 Alam Asri 1
+            {communityDetails.community_name}
           </Typography>
           <div
             style={{
@@ -101,7 +114,7 @@ const Welcome = () => {
               variant="h6"
               style={{ color: '#9D9D9D', marginBottom: '14px' }}
             >
-              Kegiatan RT 02 Alam Asri 1
+              Kegiatan {communityDetails.community_name}
             </Typography>
 
             <Grid container spacing={2}>

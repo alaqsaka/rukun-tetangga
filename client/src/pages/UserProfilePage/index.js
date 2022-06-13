@@ -9,6 +9,7 @@ import {
   AccordionDetails,
   Button
 } from '@mui/material';
+import axios from 'axios';
 import { fontSize } from '@mui/system';
 import useStyles from './styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -18,6 +19,20 @@ const UserProfilePage = () => {
   const classes = useStyles();
   // check if user logged in or no
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const [communityDetails, setCommunityDetails] = useState({});
+  useEffect(() => {
+    //const token = user?.token;
+    setUser(JSON.parse(localStorage.getItem('profile')));
+
+    if (user) {
+      axios
+        .get(`http://localhost:3001/community/${user.result.community_id}`)
+        .then((response) => {
+          setCommunityDetails(response.data.data);
+          console.log(communityDetails);
+        });
+    }
+  }, []);
 
   if (!user) {
     return (
@@ -101,22 +116,25 @@ const UserProfilePage = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Typography variant="caption">Nama RT / RW</Typography>
-          <Typography variant="body1">RT 02 Alam Asri 1</Typography>
+          <Typography variant="body1">
+            {communityDetails.community_name}
+          </Typography>
 
           <Typography variant="caption">Alamat Lengkap RT / RW</Typography>
           <Typography variant="body1">
-            Vila Dago Pamulang Jl. Alam Asri 1 RT 02/RW 022, Kota Tangerang
-            Selatan, Banten, Indonesia{' '}
+            {communityDetails.community_address}
           </Typography>
 
           <Typography variant="caption">Role Anda</Typography>
-          <Typography variant="body1">Ketua</Typography>
+          <Typography variant="body1">{user.result.role}</Typography>
 
           <Typography variant="caption">
             Kode RT / RW (Bagikan kode ini kepada warga untuk join ke Rukun
             Tetangga)
           </Typography>
-          <Typography variant="body1">ZLIO</Typography>
+          <Typography variant="body1">
+            {communityDetails.community_id}
+          </Typography>
         </AccordionDetails>
       </Accordion>
     </div>
