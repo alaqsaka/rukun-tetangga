@@ -56,11 +56,7 @@ const Header = (props) => {
   const location = useLocation();
 
   const links = [
-    {
-      id: 1,
-      route: 'About',
-      url: '/about'
-    },
+    { id: 1, route: 'Profile', url: '/user' },
     { id: 2, route: 'Kegiatan', url: '/kegiatan' },
     { id: 3, route: 'Warga', url: '/data-warga' },
     { id: 4, route: 'Landing Page CMS', url: '/landing-page-cms' }

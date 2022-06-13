@@ -7,11 +7,6 @@ const AppRoutes = [
     exact: true
   },
   {
-    path: '/about',
-    component: lazy(() => import('../pages/About')),
-    exact: true
-  },
-  {
     path: '/kegiatan',
     component: lazy(() => import('../pages/Kegiatan')),
     exact: true
@@ -39,6 +34,11 @@ const AppRoutes = [
   {
     path: '/landing-page-cms',
     component: lazy(() => import('../pages/LandingPageCMS')),
+    exact: true
+  },
+  {
+    path: '/user',
+    component: lazy(() => import('../pages/UserProfilePage')),
     exact: true
   }
 ];
