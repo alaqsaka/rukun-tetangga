@@ -111,14 +111,14 @@ const Activity = ({ activity, setCurrentId, activities }) => {
         </Typography>
       </div>
       <CardActions className={classes.cardActions}>
-        <Button
+        {/* <Button
           size="small"
           color="primary"
           onClick={() => likeAPost(activity.id)}
         >
           <ThumbUpAltIcon fontSize="small" />
           &nbsp; Suka &nbsp; {activity.Likes.length}
-        </Button>
+        </Button> */}
         {/* Wont show delete button if logged in as warga */}
         {user.result.role == 'ketua' && (
           <Button
