@@ -13,7 +13,7 @@ const styles = () => {
       display: 'flex',
       alignItems: 'center',
       maxWidth: '1300px',
-      padding: '50px'
+      padding: '20px'
     },
     aboutUsContainer: {
       width: '100%',
@@ -29,11 +29,24 @@ const styles = () => {
       fontSize: '18px'
     },
     title: {
-      paddingBottom: '15px'
+      paddingBottom: '15px',
+      background:
+        'linear-gradient(178.9deg, #0094FF 76.77%, rgba(0, 122, 255, 0.510417) 131.28%, rgba(0, 122, 255, 0) 120.06%)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      backgroundClip: 'text',
+      textAlign: 'center'
+
+      //       background: linear-gradient(178.9deg, #0094FF 76.77%, rgba(0, 122, 255, 0.510417) 131.28%, rgba(0, 122, 255, 0) 220.06%);
+      // -webkit-background-clip: text;
+      // -webkit-text-fill-color: transparent;
+      // background-clip: text;
+      // text-fill-color: transparent;
     },
     subtitle: {
       opacity: '0.4',
-      paddingBottom: '30px'
+      paddingBottom: '30px',
+      textAlign: 'center'
     },
     largeImage: {
       width: '100%'

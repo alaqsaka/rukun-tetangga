@@ -18,17 +18,20 @@ const AboutUs = () => {
             We build, We revive
           </Typography>
           <Typography className={classes.aboutUsSubtitle}>
-            Your business needs to be in safe hands at all times. We ensure you
-            never run out of customers and not run at loss. We are trusted by
-            over 500+ companies to deliver quality marketing campaigns using
-            Digital marketing & Offline marketing channels.
+            Kami menyediakan fitur yang memudahkan admnistrasi dan memperat
+            masyarakat dengan mudah dan gratis. Mendaftar dengan nomor telepon
+            dan langsung gunakan sepuasnya
           </Typography>
           <Button
             variant="contained"
             color="primary"
             sx={{ width: '200px', fontSize: '16px' }}
+            style={{
+              background:
+                'linear-gradient(178.9deg, #0094FF 76.77%, rgba(0, 122, 255, 0.510417) 131.28%, rgba(0, 122, 255, 0) 120.06%)'
+            }}
           >
-            CONTACT US
+            Hubungi Kami
           </Button>
         </Grid>
       </Grid>

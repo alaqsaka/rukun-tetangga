@@ -23,7 +23,7 @@ const ContactUs = () => {
   return (
     <Box className={classes.formContainer}>
       <Typography variant="h4" className={classes.formHeading}>
-        Contact Us
+        Kontak Kami
       </Typography>
       <Box
         className={classes.form}
@@ -74,8 +74,12 @@ const ContactUs = () => {
           color="primary"
           sx={{ width: '200px', fontSize: '16px' }}
           onClick={submitForm}
+          style={{
+            background:
+              'linear-gradient(178.9deg, #0094FF 76.77%, rgba(0, 122, 255, 0.510417) 131.28%, rgba(0, 122, 255, 0) 120.06%)'
+          }}
         >
-          Submit
+          Kirim
         </Button>
       </Box>
     </Box>

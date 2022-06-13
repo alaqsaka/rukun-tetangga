@@ -12,19 +12,19 @@ const Section = () => {
     {
       id: 1,
       icon: <EngineeringOutlinedIcon sx={{ fontSize: 100 }} color="primary" />,
-      sentence:
-        'Solving world problems through various web applications using efficient programs and tools'
+      sentence: 'Aplikasi untuk keperluan administrasi masyarakat RT atau RW. '
     },
     {
       id: 2,
       icon: <AllInclusiveIcon sx={{ fontSize: 100 }} color="primary" />,
       sentence:
-        'Through team work, we collaborate and deliver quality projects of high standards'
+        'Membuat daftar pengurus RT serta tugas dan jabatannya untuk mempermudah admnistrasi'
     },
     {
       id: 3,
       icon: <PaidOutlinedIcon sx={{ fontSize: 100 }} color="primary" />,
-      sentence: 'Flexible payment plan is applicable to all our services'
+      sentence:
+        'Catat Laporan Keuangan RT, Iuran Warga, serta Koperasi dengan mudah dan cepat'
     }
   ];
   return (

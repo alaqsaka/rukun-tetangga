@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Grid, Typography, Button, Box } from '@mui/material';
 import friendsImg from '../../../assets/images/myteam.jpg';
@@ -9,35 +10,64 @@ const Hero = () => {
   return (
     <Box className={classes.heroBox} style={{ fontFamily: 'Poppins' }}>
       <Grid container spacing={6} className={classes.gridContainer}>
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={12} style={{ textAlign: 'center' }}>
           <Typography
             variant="h3"
             fontWeight={700}
             className={classes.title}
-            style={{ fontFamily: 'Poppins' }}
+            style={{
+              fontFamily: 'Poppins',
+              maxWidth: '1000px',
+              margin: '0 auto',
+              lineHeight: '60px '
+            }}
           >
-            Lets scale your business
+            Manajemen keperluan RT dan RW anda dengan mudah
           </Typography>
           <Typography
             variant="h6"
             className={classes.subtitle}
-            style={{ fontFamily: 'Poppins' }}
+            style={{
+              fontFamily: 'Poppins',
+              maxWidth: '800px',
+              margin: '0 auto'
+            }}
           >
-            Hire professionals who will help your business make 10X your
-            previous income. With over 5years experience in Marketing & Business
-            strategy, we are your best client.
+            Kami menyediakan fitur yang memudahkan admnistrasi, kegiatan, data
+            warga, dan memperat masyarakat
           </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ width: '200px', fontSize: '16px' }}
-            style={{ fontFamily: 'Poppins' }}
+
+          <div
+            style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}
           >
-            HIRE US
-          </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{ width: '200px', fontSize: '16px' }}
+              style={{
+                fontFamily: 'Poppins',
+                background:
+                  'linear-gradient(178.9deg, #0094FF 76.77%, rgba(0, 122, 255, 0.510417) 131.28%, rgba(0, 122, 255, 0) 220.06%)'
+              }}
+            >
+              Coba Sekarang
+            </Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              sx={{ width: '200px', fontSize: '16px' }}
+              style={{
+                fontFamily: 'Poppins',
+                color:
+                  'linear-gradient(178.9deg, #0094FF 76.77%, rgba(0, 122, 255, 0.510417) 131.28%, rgba(0, 122, 255, 0) 220.06%)'
+              }}
+            >
+              Pelajari Lebih Lanjut
+            </Button>
+          </div>
         </Grid>
-        <Grid item xs={12} md={5}>
-          <img src={friendsImg} alt="My Team" className={classes.largeImage} />
+        <Grid item xs={12} md={12}>
+          {/* <img src={friendsImg} alt="My Team" className={classes.largeImage} /> */}
         </Grid>
       </Grid>
     </Box>
