@@ -1,39 +1,26 @@
-import express from "express";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import cors from "cors";
-
-import activityRoutes from "./routes/activities.js";
-import userRoutes from "./routes/users.js";
-
+const express = require("express");
 const app = express();
-dotenv.config();
+const cors = require("cors");
 
-app.use(
-  bodyParser.json({
-    limit: "30mb",
-    extended: true,
-  })
-);
-
-app.use(
-  bodyParser.urlencoded({
-    limit: "30mb",
-    extended: true,
-  })
-);
-
+app.use(express.json());
+const db = require("./models");
 app.use(cors());
-app.use("/activities", activityRoutes);
-app.use("/user", userRoutes);
+// routers
+const postRouter = require("./routes/Posts");
+app.use("/posts", postRouter);
+const commentsRouter = require("./routes/Comments");
+app.use("/comments", commentsRouter);
+const usersRouter = require("./routes/Users");
+app.use("/auth", usersRouter);
+const lengkapiDataRouter = require("./routes/LengkapiData");
+app.use("/lengkapi-data", lengkapiDataRouter);
+const likesRouter = require("./routes/Likes");
+app.use("/likes", likesRouter);
+const communityRouter = require("./routes/Community");
+app.use("/community", communityRouter);
 
-const CONNECTION_URL = process.env.CONNECTION_URL;
-const PORT = process.env.PORT || 5000;
-
-mongoose
-  .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() =>
-    app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
-  )
-  .catch((error) => console.log(error.message));
+db.sequelize.sync().then(() => {
+  app.listen(3001, () => {
+    console.log("Server running on port 3001");
+  });
+});

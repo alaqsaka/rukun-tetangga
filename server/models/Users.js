@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Ketua = sequelize.define("Ketua", {
+  const Users = sequelize.define("Users", {
     namaDepan: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -35,11 +35,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  Ketua.associate = (models) => {
-    Ketua.hasOne(models.Community, {
+  Users.associate = (models) => {
+    Users.hasMany(models.Likes, {
       onDelete: "cascade",
     });
   };
 
-  return Ketua;
+  return Users;
 };
