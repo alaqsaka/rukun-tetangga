@@ -13,7 +13,9 @@ const Kegiatan = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
   useEffect(() => {
-    dispatch(getActivities());
+    if (user) {
+      dispatch(getActivities(user.result.community_id));
+    }
   }, [currentId, dispatch]);
 
   return (

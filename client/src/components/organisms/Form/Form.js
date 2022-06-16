@@ -10,6 +10,7 @@ import { createActivity, updateActivity } from '../../../actions/activities.js';
 
 const Form = ({ currentId, setCurrentId }) => {
   const dispatch = useDispatch();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
   const [activityData, setActivityData] = useState({
     creator: '',
@@ -18,7 +19,8 @@ const Form = ({ currentId, setCurrentId }) => {
     tanggalKegiatan: '',
     waktuKegiatan: '',
     tempatKegiatan: '',
-    selectedFile: ''
+    selectedFile: '',
+    community_id: user.result.community_id
   });
 
   const [tanggal, setTanggal] = useState('');
@@ -59,7 +61,8 @@ const Form = ({ currentId, setCurrentId }) => {
       tanggalKegiatan: '',
       waktuKegiatan: '',
       tempatKegiatan: '',
-      selectedFile: ''
+      selectedFile: '',
+      community_id: user.result.community_id
     });
   };
 

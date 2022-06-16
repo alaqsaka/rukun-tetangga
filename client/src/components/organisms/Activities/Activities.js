@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Activity from './Activity/Activity';
-import { Grid, CircularProgress } from '@mui/material';
+import { Grid } from '@mui/material';
 import useStyles from './styles';
 
 const Activities = ({ setCurrentId }) => {
@@ -15,7 +15,10 @@ const Activities = ({ setCurrentId }) => {
     // Jika engga ada value di dalam array activities maka tampilkan circularprogress
     <div>
       {!activities.length ? (
-        <CircularProgress />
+        <div>
+          {/* <CircularProgress /> */}
+          <div>Belum ada kegiatan</div>
+        </div>
       ) : (
         <Grid
           className={classes.container}

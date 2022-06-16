@@ -25,10 +25,11 @@ const Welcome = () => {
 
   useEffect(() => {
     //const token = user?.token;
+
     setUser(JSON.parse(localStorage.getItem('profile')));
-    dispatch(getActivities());
 
     if (user) {
+      dispatch(getActivities(user.result.community_id));
       axios
         .get(`http://localhost:3001/community/${user.result.community_id}`)
         .then((response) => {
@@ -120,7 +121,8 @@ const Welcome = () => {
             <Grid container spacing={2}>
               <Grid item xs={12} md={12}>
                 {!activities.length ? (
-                  <CircularProgress />
+                  // <CircularProgress />
+                  <div>belum punya kegiatan</div>
                 ) : (
                   <Grid
                     className={classes.container}

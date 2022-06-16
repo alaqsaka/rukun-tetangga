@@ -10,9 +10,9 @@ import {
 } from '../constants/actionTypes';
 
 // Action Creators
-export const getActivities = () => async (dispatch) => {
+export const getActivities = (community_id) => async (dispatch) => {
   try {
-    const { data } = await api.fetchActivities();
+    const { data } = await api.fetchActivities(community_id);
     console.log(data);
     dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {

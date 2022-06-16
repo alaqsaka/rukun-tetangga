@@ -3,7 +3,8 @@ import axios from 'axios';
 const API = axios.create({ baseURL: 'http://localhost:3001' });
 //const url = 'http://localhost:5000/activities';
 
-export const fetchActivities = () => API.get(`/posts`);
+export const fetchActivities = (community_id) =>
+  API.get(`/posts/${community_id}`);
 export const createActivity = (newActivity) => API.post('/posts', newActivity);
 export const getComments = (postId) => API.get(`/comments/${postId}`);
 

@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
+    community_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
 
   Posts.associate = (models) => {

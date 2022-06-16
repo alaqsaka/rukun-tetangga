@@ -11,6 +11,19 @@ router.get("/", async (req, res) => {
   res.json(listOfPosts);
 });
 
+router.get("/:community_id", async (req, res) => {
+  const community_id = req.params.community_id;
+
+  console.log(community_id);
+
+  const post = await Posts.findAll({
+    where: { community_id: community_id },
+  });
+
+  console.log(post);
+  res.status(200).json(post);
+});
+
 router.get("/byId/:id", async (req, res) => {
   const id = req.params.id;
 
@@ -27,6 +40,8 @@ router.get("/byId/:id", async (req, res) => {
 // create new post
 router.post("/", async (req, res) => {
   const post = req.body;
+
+  console.log(post);
 
   let newPost = await Posts.create(post);
 

@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { Users, Ketua } = require("../models");
-const bcrypt = require("bcrypt");
-const { hash } = require("bcrypt");
+const bcrypt = require("bcryptjs");
+const { hash } = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
 
 // create new user
