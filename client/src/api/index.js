@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:3001' });
+const API = axios.create({ baseURL: 'http://rukuntetangga-admin.my.id' });
 //const url = 'http://localhost:5000/activities';
 
 export const fetchActivities = (community_id) =>

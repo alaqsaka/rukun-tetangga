@@ -24,10 +24,12 @@ const KegiatanDetails = () => {
   let [comments, setComments] = useState([]);
   comments = useSelector((state) => state.activities);
   useEffect(() => {
-    axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
-      setPostObject(response.data);
-      console.log(response);
-    });
+    axios
+      .get(`http://rukuntetangga-admin.my.id/posts/byId/${id}`)
+      .then((response) => {
+        setPostObject(response.data);
+        console.log(response);
+      });
 
     dispatch(getComments(id));
   }, []);
@@ -37,7 +39,7 @@ const KegiatanDetails = () => {
   const addComment = () => {
     axios
       .post(
-        'http://localhost:3001/comments',
+        'http://rukuntetangga-admin.my.id/comments',
         {
           commentBody: newComment,
           PostId: id,
