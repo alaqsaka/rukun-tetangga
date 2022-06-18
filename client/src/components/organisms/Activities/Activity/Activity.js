@@ -36,7 +36,7 @@ const Activity = ({ activity, setCurrentId, activities }) => {
   const likeAPost = (postId) => {
     axios
       .post(
-        'http://rukuntetangga-admin.my.id/likes',
+        'http://http://localhost:3001/likes',
         { PostId: postId },
         {
           headers: {

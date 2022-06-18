@@ -46,9 +46,7 @@ const LandingPageCMS = () => {
 
     if (user) {
       axios
-        .get(
-          `http://rukuntetangga-admin.my.id/community/${user.result.community_id}`
-        )
+        .get(`http://localhost:3001/community/${user.result.community_id}`)
         .then((response) => {
           setCommunityDetails(response.data.data);
         });

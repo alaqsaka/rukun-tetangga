@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Rukun Tetangga Admin </title>
+</head>
+<body class="dark:bg-slate-900">
+    <div class="container mx-auto px-4 py-4">
+        <!-- ... -->
+        <p class="text-5xl font-bold text-teal-400">Rukun Tetangga Admin</p>
+        <p class="text-lg font-semibold text-teal-500 mt-5">Selamat datang di website Rukun Tetangga Admin. Website ini digunakan sebagai penyedia API untuk website Rukun Tetangga</p>
+        <p class="text-lg font-semibold text-teal-500 mt-5 mb-5">Beberapa API yang tersedia: </p>
+
+        <table class="border-collapse border border-slate-200 table w-full ... text-slate-200">
+            <thead>
+              <tr>
+                <th class="border border-slate-200 p-3">Endpoint</th>
+                <th class="border border-slate-200 p-3">Method</th>
+                <th class="border border-slate-200 p-3">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-slate-200  p-3">/posts/:community_id</td>
+                <td class="border border-slate-200  p-3">GET</td>
+                <td class="border border-slate-200  p-3">Mendapatkan data-data kegiatan yang dimiliki oleh suatu RT/RW</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-200  p-3">/posts</td>
+                <td class="border border-slate-200  p-3">POST</td>
+                <td class="border border-slate-200  p-3">Membuat kegiatan baru</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-200  p-3">/posts/:postId</td>
+                <td class="border border-slate-200  p-3">GET</td>
+                <td class="border border-slate-200  p-3">Mendapatkan detail satu kegiatan</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-200  p-3">/posts/:postId</td>
+                <td class="border border-slate-200  p-3">DELETE</td>
+                <td class="border border-slate-200  p-3">Menghapus satu kegiatan</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-200  p-3">/comments/:postId</td>
+                <td class="border border-slate-200  p-3">GET</td>
+                <td class="border border-slate-200  p-3">Mendapatkan komentar sebuah post kegiatan</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-200  p-3">/comments/:postId</td>
+                <td class="border border-slate-200  p-3">POST</td>
+                <td class="border border-slate-200  p-3">Menambahkan komentar sebuah post kegiatan</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="text-lg font-semibold text-teal-500 mt-5 mb-5">Untuk membaca dan melihat koleksi API lebih lengkap dapat mengunjungi <a href="https://documenter.getpostman.com/view/14575742/Uz5NhsQj" class="underline decoration-solid" target="_blank">dokumentasi Postman</a></p> 
+    </div>
+</body>
+</html>
